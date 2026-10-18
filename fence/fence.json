@@ -29,8 +29,8 @@
     "allowLocalOutboundPorts": [8080, 8081, 8082, 11431, 6767, 6768, 6379, 5432]
   },
   "filesystem": {
-    "allowRead": [".", "/tmp"],
-    "allowWrite": [".", "/tmp"]
+    "allowRead": [".", "/tmp", "~/code/personal/local-llm-stack"],
+    "allowWrite": [".", "/tmp", "~/code/personal/local-llm-stack"]
   },
   "macos": {
     "mach": {
