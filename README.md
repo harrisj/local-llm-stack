@@ -100,7 +100,14 @@ more RAM than me.
 ## The Model Router Approach
 
 Originally, I wound up manually switching between a few differently sized models
-to get a feel for it.
+to get a feel for it. More recently, I have switched to a "model router"
+configuration where code looks at the complexity of the incoming task and makes
+a decision which model to route it too. First, it sees if there is a regexp
+match and then it'll use the Granite-8b model to examine the task complexity if
+that task fails.
+
+This configuration is highly experimental and likely to change as I observe its
+performance and tweak parameters.
 
 ## The Problems of an "Ethical" Model
 
