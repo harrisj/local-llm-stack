@@ -2,6 +2,8 @@
 
 This repository will track my configuration for a local LLM rig for small agentic programming tasks on my laptop.
 
+**This configuration is being actively tweaked all the time. It will change frequently. Use it as a reference rather than an exact copy.**
+
 ![A screenshot of my local LLM stack running](images/screenshot.png)
 
 If you don't know me, I'm an experienced software developer who has a somewhat skeptical view of LLM hype. There are many things I will never use an LLM for:
