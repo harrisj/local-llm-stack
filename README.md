@@ -224,6 +224,12 @@ completions. One nice thing about Ollama is that it has a token cache which can
 recognize the same token preamble as before and skip the tedious ingestion of
 the old content again.
 
+This works for the most part, but I'll probably keep tweaking it. One unusual
+aspect of this setup is that the Granite models can support reasoning, but the
+Devstral one doesn't. So I have a thinking sandwich basically, and it feels like
+it would make sense to turn off thinking for the low Granite-8b model and find a
+thinking alternaitve to Devstral that works well for development.
+
 ## No Subagents
 
 My stack can run at most 2 models at a time. This means that workflows and tools
