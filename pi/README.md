@@ -1,5 +1,7 @@
 # Pi Coding Framework Config
 
+## 
+
 ## Extensions
 
 Pi famously comes with very few options included. Currently, I am using the following extensions:
@@ -25,3 +27,12 @@ Pi famously comes with very few options included. Currently, I am using the foll
 - npm:pi-goal-x
 - npm:pi-mcp-adapter
 - npm:model-debugger
+
+## System Prompt
+
+Let me first say that most prompting advice is more folklore than science, since
+it's hard to know what is really effective. All these prompts are is what the
+model is told first, in the hopes that it will guide the LLM pachinko down
+better pathways. Never rely solely on system prompts to prevent things you
+absolutely need to NEVER happen. For that, I recommend external deterministic
+gates like fence.
