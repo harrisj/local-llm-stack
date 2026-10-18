@@ -243,3 +243,13 @@ using as well as additional README files.
 ## How I Run Pi
 
 Because I use `fence`, I invoke pi with an shell alias to `fence pi`
+
+# One Other System Setting
+
+If you want to use LLMs while your laptop is unplugged, you should set the
+Battery setting to use Low Power when on battery power only. Otherwise, your
+fans will be blowing like crazy and your battery charge will drop fast. This
+does mean a performance hit (and your laptop gets warm), but it's still
+reasonable.
+
+![A screenshot showing the Mac power settings to use Low Power when on battery](./images/battery.png)
