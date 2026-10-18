@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "strategy": "compaction",
+  "triggerThresholdPercent": 85,
+  "targetReductionPercent": 20,
+  "preserveRecentTurns": 4,
+  "clearCacheOnModelSwitch": false,
+  "tokenWeighting": {
+    "systemPrompt": 1.0,
+    "userPrompt": 1.0,
+    "codeBlocks": 0.85
+  },
+  "languageSpecifics": {
+    "python": {
+      "stripDocstringsOnCritical": true,
+      "preserveImports": true
+    },
+    "ruby": {
+      "stripCommentsOnCritical": true
+    }
+  }
+}

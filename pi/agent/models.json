@@ -1,0 +1,46 @@
+{
+  "providers": {
+    "ollama": {
+      "api": "openai-completions",
+      "apiKey": "TERM",
+      "baseUrl": "http://127.0.0.1:11434/v1",
+      "maxConcurrency": 2,
+      "models": [
+        {
+          "id": "starcoder2:15b",
+          "name": "StarCoder2 Fast Utility",
+          "contextWindow": 32768,
+          "compatibility": "ollama",
+          "maxTokens": 32768
+        },
+        {
+          "id": "mistral-pi:latest",
+          "name": "Mistral Pi Baseline",
+          "contextWindow": 131072,
+          "maxTokens": 4096,
+          "timeout": 300000,
+          "compatibility": "ollama",
+          "codemode": true
+        },
+        {
+          "id": "devstral-pi:latest",
+          "name": "Devstral Pi Agent",
+          "contextWindow": 131072,
+          "maxTokens": 4096,
+          "timeout": 300000,
+          "compatibility": "ollama",
+          "codemode": true
+        },
+        {
+          "id": "granite-30b:latest",
+          "name": "Granite 4.2 30B",
+          "contextWindow": 131072,
+          "maxTokens": 8192,
+          "compatibility": "ollama",
+          "thinking": "high",
+          "thinkingFormat": "string"
+        }
+      ]
+    }
+  }
+}

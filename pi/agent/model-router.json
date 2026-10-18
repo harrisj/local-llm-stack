@@ -1,0 +1,76 @@
+{
+  "debug": true,
+  "classifierModels": ["ollama/granite:8b"],
+  "classifierModelThinking": "off",
+  "defaultContextThresholdPercent": 85,
+  "profiles": {
+    "auto": {
+      "low": {
+        "model": "ollama/granite:8b",
+        "contextWindow": 65536,
+        "thinking": "off",
+        "options": {
+          "temperature": 0.0,
+          "num_ctx": 65536,
+          "num_predict": 4096,
+          "num_thread": 8,
+          "f16_kv": false,
+          "keep_alive": -1
+        }
+      },
+      "medium": {
+        "model": "ollama/mistral:7b",
+        "contextWindow": 64000,
+        "thinking": "off",
+        "options": {
+          "temperature": 0.0,
+          "num_ctx": 64000,
+          "num_predict": 8192,
+          "num_thread": 8,
+          "f16_kv": false,
+          "keep_alive": -1
+        }
+      },
+      "high": {
+        "model": "ollama/granite:30b",
+        "contextWindow": 128000,
+        "thinking": "high",
+        "options": {
+          "temperature": 0.1,
+          "num_ctx": 128000,
+          "num_predict": 8192,
+          "num_thread": 8,
+          "f16_kv": false,
+          "keep_alive": 0,
+          "system": "You are executing an autonomous goal loop. Use your deep internal reasoning to orchestrate complex architectural strategies."
+        }
+      }
+    }
+  },
+  "rules": [
+    {
+      "matches": "(architecture|design|database|schema|security|race condition|deadlock|memory leak|architect|deep dive|benchmark|profile|refactor project|restructure repo|system design|metaprogramming|gil|concurrency|thread pool|active record|sqlalchemy|\\.sql|\\.(rb|py))",
+      "tier": "high",
+      "reason": "System optimization and heavy architectural reasoning take absolute priority"
+    },
+    {
+      "matches": "(create_goal|get_goal|update_goal|propose_goal_draft|set_goal_tasks|goal_questionnaire|goal_confirmation|goal_topic|\\[GOAL\\]|__goal__|<goal_topic>|\\/goal)",
+      "tier": "high",
+      "reason": "Pi-Goal orchestrator strings lock into high reasoning mode"
+    },
+    {
+      "matches": "(?i)\\b(write|implement|create|generate|patch|refactor|modify|update_goal_task)\\b|\\.(js|ts|go|cpp|rs|java)",
+      "tier": "medium",
+      "reason": "Standard code modification and explicit multi-file implementation pipelines"
+    },
+    {
+      "matches": "(?i)\\b(regex|json|yaml|toml|markdown|md|csv|log|logs|print|echo|format|lint|prettier|eslint|ruff|black|pip|npm|install|bump|version|typo|fix_typo|comment|comments|docs|docstring|rubocop|flake8|autopep8|yard|pydoc|bundle|gem|rake|pipenv|poetry|run (the )?test(s)?|rspec|pytest|unittest|Gemfile|pyproject\\.toml|requirements\\.txt|Pipfile|\\.txt|\\.ini|\\.cfg|\\.conf|version|ping|help|clear|status|git status|ls|dir|pwd|document|add comments|write tests|generate boilerplate)\\b",
+      "tier": "low",
+      "reason": "Lightweight formatting, testing, and dependency tasks bypass heavier tiers entirely"
+    }
+  ],
+  "fallbacks": {
+    "ollama/granite:30b": ["ollama/mistral:7b"],
+    "ollama/mistral:7b": ["ollama/granite:8b"]
+  }
+}

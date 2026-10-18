@@ -1,0 +1,65 @@
+{
+  "defaultModel": "auto",
+  "defaultProvider": "router",
+  "thinking_effort": "low",
+  "lastChangelogVersion": "1.2.0",
+  "httpIdleTimeoutMs": 0,
+  "packages": [
+    "npm:@ollama/pi-web-search",
+    "npm:@alexanderfortin/pi-loaded-tools",
+    "npm:pi-plan",
+    "npm:pi-show",
+    "npm:pi-powerline-footer",
+    "npm:pi-output-styles",
+    "npm:pi-context-view",
+    "npm:pi-tool-missing-guard",
+    "npm:@sting8k/pi-utils",
+    "npm:@nicknisi/pi-ast-grep",
+    "npm:@henryqw/pi-ask-question",
+    "npm:pi-ponytail",
+    "npm:@jamesjfoong/pi-ollama",
+    "npm:@99percentpeople/pi-thinking-fold",
+    "git:github.com/code-yeongyu/pi-nested-agents-md",
+    "npm:@narumitw/pi-btw",
+    "npm:pi-blackhole",
+    "npm:@kdejaeger/pi-model-router",
+    "npm:pi-goal-x",
+    "npm:pi-mcp-adapter",
+    "npm:model-debugger"
+  ],
+  "theme": "dark",
+  "compaction": {
+    "enabled": true
+  },
+  "defaultTools": [
+    "+codemode",
+    "+find",
+    "+grep",
+    "+ls",
+    "+tool_search",
+    "+ast_rewrite",
+    "+ast_search"
+  ],
+  "retry.provider.timeoutMs": 300000,
+  "hideThinkingBlock": false,
+  "router.timeoutMs": 300000,
+  "router.retry.maxRetries": 5,
+  "router.retry.delayMs": 5000,
+  "enabledModels": [
+    "ollama/gemma4:26b",
+    "ollama/granite-30b:latest",
+    "ollama/granite-3b:latest",
+    "ollama/granite-8b:latest",
+    "ollama/starcoder2:15b",
+    "ollama/devstral-pi:latest",
+    "ollama/mistral-pi:latest",
+    "ollama/granite:30b",
+    "ollama/granite:8b",
+    "ollama/mistral:7b",
+    "router/auto"
+  ],
+  "powerline": "default",
+  "extensions": [
+    "-builtin:mcp"
+  ]
+}

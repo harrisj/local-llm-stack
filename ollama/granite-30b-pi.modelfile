@@ -1,0 +1,5 @@
+FROM granite4.2:30b
+
+# Deep 64K threshold allocated for deep manual architectural tasks
+PARAMETER num_ctx 131072
+PARAMETER num_predict 8192

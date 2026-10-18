@@ -1,0 +1,4 @@
+FROM granite4.2:8b
+
+PARAMETER num_ctx 65536
+PARAMETER num_predict 4096
