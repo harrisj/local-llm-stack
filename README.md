@@ -73,7 +73,10 @@ There is a lot of "I" in that list, and that's the point. These are my personal
 reasons. I have no interest in debating the "correctness" of this list; this is
 just my own personal guidelines that framed this problem for me.
 
-As an aside, it does seem like there could be a 
+As an aside, it does seem like there could be a good business/neighborhood
+service of running locally hosted models as a service. These machines would need
+to have massive amounts of memory to handle multiple models with parallel
+connections.
 
 ## My Laptop
 
@@ -220,6 +223,12 @@ whole computation with the previous context and what you added to get new
 completions. One nice thing about Ollama is that it has a token cache which can
 recognize the same token preamble as before and skip the tedious ingestion of
 the old content again.
+
+## No Subagents
+
+My stack can run at most 2 models at a time. This means that workflows and tools
+that rely on dozens or hundreds of subagents will be effectively throttled. I'm
+good with that, but just noting for context.
 
 ## Configurations
 
