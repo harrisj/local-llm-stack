@@ -252,4 +252,4 @@ fans will be blowing like crazy and your battery charge will drop fast. This
 does mean a performance hit (and your laptop gets warm), but it's still
 reasonable.
 
-![A screenshot showing the Mac power settings to use Low Power when on battery](./images/battery.png)
+![A screenshot showing the Mac power settings to use Low Power when on battery](./images/battery-setting.png)
