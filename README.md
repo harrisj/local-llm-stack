@@ -314,6 +314,15 @@ My stack can run at most 2 models at a time. This means that workflows and tools
 that rely on dozens or hundreds of subagents will be effectively throttled. I'm
 good with that, but just noting for context.
 
+It also means that I can't run Pi against two different projects at the same
+time (I don't have support for parallel models and it would kill caching, etc.)
+I accept this, because I like to give my agents really specific tasks and focus
+on their work without obsessing about hitting new theoretical performance
+maximums. I accept this is a limitation of this approach, but it might be a
+dealbreaker for you. I do recommend using frameworks like `/goal` or `/loop`
+that can resume in the middle of the work if you do need to kill your agent in
+one project to go work in another.
+
 ## Configurations
 
 Ths directories in this repository contain various configuration options I am
