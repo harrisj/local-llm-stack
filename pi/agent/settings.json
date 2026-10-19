@@ -21,11 +21,11 @@
     "git:github.com/code-yeongyu/pi-nested-agents-md",
     "npm:@narumitw/pi-btw",
     "npm:pi-blackhole",
-    "npm:@kdejaeger/pi-model-router",
     "npm:pi-goal-x",
     "npm:pi-mcp-adapter",
     "npm:model-debugger",
-    "npm:pi-powerline"
+    "npm:pi-powerline",
+    "npm:@yeliu84/pi-model-router"
   ],
   "theme": "dark",
   "compaction": {

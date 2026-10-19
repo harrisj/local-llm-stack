@@ -54,49 +54,34 @@
   },
   "rules": [
     {
-      "matches": "(?i)(!high|\\/high|--high|architect|force-high)",
-      "tier": "high",
-      "reason": "Manual override flag to force the high reasoning tier immediately"
-    },
-    {
-      "matches": "(?i)(!medium|\\/medium|--medium|force-medium)",
+      "matches": ["create_goal", "get_goal", "update_goal", "[goal]", "/goal"],
       "tier": "medium",
-      "reason": "Manual override flag to force the medium coding tier immediately"
+      "reason": "Goal workflow indicators forced straight to medium tier"
     },
     {
-      "matches": "(?i)(!low|\\/low|--low|force-low)",
-      "tier": "low",
-      "reason": "Manual override flag to force the low tier immediately"
-    },
-    {
-      "matches": "(?i)(create_goal|get_goal|update_goal|propose_goal_draft|set_goal_tasks|goal_questionnaire|goal_confirmation|goal_topic|\\[GOAL\\]|__goal__|<goal_topic>|\\/goal)",
-      "tier": "high",
-      "reason": "Pi-Goal orchestrator strings lock into high reasoning mode"
-    },
-    {
-      "matches": "(?i)(refactor project|restructure repo|system design|metaprogramming|race condition|deadlock|memory leak|deep dive|benchmark|profile|gil|concurrency|thread pool|active record|sqlalchemy|freeze|hang|stuck|slowdown|optimize|scale|async|await|parallel|lock|mutex|semaphore|architecture|design|database|schema|security)",
-      "tier": "high",
-      "reason": "Heavy architectural reasoning, structural refactoring, and concurrency patterns"
-    },
-    {
-      "matches": "(?i)\\b\\w+\\.(js|ts|go|cpp|rs|java|py|rb|sql)\\b",
+      "matches": [
+        "write",
+        "implement",
+        "create",
+        "generate",
+        "patch",
+        "refactor",
+        "migrate",
+        "serializer",
+        "pydantic",
+        "django"
+      ],
       "tier": "medium",
-      "reason": "Standard programming and query language script interaction shortcut"
+      "reason": "Activity-based programming verbs forced to medium tier"
     },
     {
-      "matches": "(?i)\\b\\w+\\.(txt|ini|cfg|conf|toml|json|yaml|md)\\b",
+      "matches": ["hello", "hi", "hey", "echo", "say hello", "greetings"],
       "tier": "low",
-      "reason": "Config and documentation file extensions filtered to low tier"
+      "reason": "Trivial interactions filtered to low tier"
     }
   ],
   "fallbacks": {
     "ollama/granite-30b-pi:latest": ["ollama/lfm-pi:latest"],
     "ollama/lfm-pi:latest": ["ollama/granite-8b-pi:latest"]
-  },
-  "phaseMemory": true,
-  "minTurnsPerTier": 2,
-  "phaseMemoryConfig": {
-    "decayRate": 0.5,
-    "boostRulesTier": true
   }
 }

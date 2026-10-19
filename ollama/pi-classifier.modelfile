@@ -1,21 +1,7 @@
 FROM granite4:350m-h
 
 # CLASSIFIER CONTEXT OVERHEAD MITIGATION
-# Dropping this from 8192 to 2048 prevents Ollama from pre-allocating 1.5GB+ of KV cache
-PARAMETER num_ctx 2048
-PARAMETER num_predict 64
+PARAMETER num_ctx 4096
 PARAMETER temperature 0.0
 PARAMETER top_k 1
 PARAMETER top_p 0.0
-
-SYSTEM """
-You are the intent classification backend for the pi-model-router coding extension. 
-Analyze the incoming coding agent prompt or tool response log and classify the request.
-
-Output Format:
-Respond EXCLUSIVELY with a raw JSON object matching this schema exactly:
-{
-  "class": "low" | "medium" | "high",
-  "reason": "short explanation"
-}
-"""
