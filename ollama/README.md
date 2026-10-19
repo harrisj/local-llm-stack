@@ -8,16 +8,12 @@ To tweak my models, I have created modelfiles for Pi. To install these, you run 
 
 ```sh
 ollama create granite-30b-pi -f granite-30b-pi.modelfile
+ollama create granite-8b-pi -f granite-8b-pi.modelfile
+ollama create lfm-pi -f lfm-pi.modelfile
+ollama create pi-classifier -f pi-classifier.modelfile
 ```
+
 This works pretty well and I recommend the `pi-ollama` extension in Pi to automatically read Ollama models. One of the biggest frustrations in this whole endeavor is that I need to tweak context windows to keep memory usage reasonable, but different tools in Pi seem to not necessarily load the context windows I need, so I have to keep
-
-I also had an issue where the Reflector model used by `pi blackhole` wasn't recognizing my custom model names. So I had to run this as well.
-
-```sh
-ollama cp granite-30b-pi:latest granite:30b
-ollama cp granite-8b-pi:latest granite:8b
-ollama cp devstral-pi:latest mistral:7b
-```
 
 I'm going to be investigating that next to see if I can fix it and if I can remove some of these redundant settings and names.
 

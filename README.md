@@ -135,6 +135,43 @@ well. So, you'll see me doing some tweaks over time to try to make it so the
 lower models handle 80% of the tasks with the big model swapping in for when
 it's really needed and hopefully exiting immediately after.
 
+## The Classifer Model
+
+When all regexps miss, the model router will then ask a classifier model to assess which model will run this. Here is the code for the prompt it sends:
+
+```typescript
+const TIER_CRITERIA: Record<RouterTier, string> = {
+  high: 'Architecture, design, planning, tradeoff analysis, broad debugging, large refactors, or codebase research',
+  medium:
+    'Implementation of a known plan, multi-file edits, normal coding work, focused debugging, or tests/fixes',
+  low: 'Summaries, changelogs, formatting, quick explanations, small bounded transforms, or simple read-only lookups',
+};
+
+const classifierPrompt = `You are a model router classifier. Your job is to categorize the user's latest request into one of three tiers: "high", "medium", or "low".
+
+Tiers:
+- high: ${TIER_CRITERIA.high}.
+- medium: ${TIER_CRITERIA.medium}.
+- low: ${TIER_CRITERIA.low}.
+
+${currentPhase ? `Current conversation phase: ${currentPhase}\n` : ''}
+Recent history:
+${historyText}
+
+Latest user message:
+${promptText}
+
+Return your decision in exactly two lines:
+Tier: [high|medium|low]
+Reasoning: [one short sentence]
+
+${currentPhase === 'planning' ? 'Consider that the conversation is currently in a planning phase. Bias toward "high" unless the request is clearly a simple implementation or summary.' : ''}
+${currentPhase === 'implementation' ? 'Consider that the conversation is currently in an implementation phase. Bias toward "medium" unless the request is clearly planning or a simple summary.' : ''}`;
+
+```
+
+To handle these, I have another classifier model which is a very smol model that is tuned to just take these and not use a ton of memory (0.5 GB or so). I do this with a highly-tuned Modelfile you can see in the Ollama directory.
+
 ## The Problems of an "Ethical" Model
 
 Now that I had a machine, the next step was finding an ethical model for coding

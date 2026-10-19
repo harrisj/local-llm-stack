@@ -14,14 +14,9 @@
     "enabled": true,
     "models": ["ollama/pi-classifier:latest"]
   },
-  "stickyTierDurationTurns": 4,
-  "stickyTierCooldownTurns": 1,
+  "stickyTierDurationTurns": 1,
   "minTurnsPerTier": 1,
-  "phaseMemory": true,
-  "phaseMemoryConfig": {
-    "decayRate": 0.1,
-    "boostRulesTier": false
-  },
+  "phaseMemory": false,
   "profiles": {
     "auto": {
       "low": {
@@ -89,34 +84,13 @@
         "race condition",
         "deadlock",
         "memory leak",
-        "gil ",
         "mutex",
         "semaphore",
+        "transaction",
         "crash dump"
       ],
       "tier": "high",
       "reason": "Strict runtime concurrency bugs and engine-level diagnostics that warrant single-turn 30B analysis"
-    },
-    {
-      "matches": [
-        "create_goal",
-        "get_goal",
-        "update_goal",
-        "propose_goal_draft",
-        "set_goal_tasks",
-        "goal_questionnaire",
-        "goal_confirmation",
-        "goal_topic",
-        "[goal]",
-        "__goal__",
-        "<goal_topic>",
-        "/goal",
-        "update_goal_task",
-        "goal loop",
-        "orchestration loop"
-      ],
-      "tier": "medium",
-      "reason": "Pi-Goal orchestrations and planning workloads intercepted by the medium tier to bypass high stickiness"
     },
     {
       "matches": [
@@ -132,12 +106,29 @@
         "port",
         "translate",
         "integrate",
-        "api compatibility",
+        "endpoint",
+        "route",
+        "class ",
+        "def ",
         "function ",
         "import "
       ],
       "tier": "medium",
-      "reason": "Standard coding actions, migrations, feature implementation, and Django ecosystem pipelines"
+      "reason": "Pure implementation, feature writing, and codebase modification verbs intercepted by the medium tier"
+    },
+    {
+      "matches": [
+        "profile",
+        "benchmark",
+        "slowdown",
+        "stuck",
+        "hang",
+        "freeze",
+        "optimize",
+        "performance"
+      ],
+      "tier": "medium",
+      "reason": "Standard performance profiling, code optimization, and loop diagnostics handled in the medium tier"
     },
     {
       "matches": [
@@ -188,7 +179,10 @@
         "ini",
         "cfg",
         "conf",
-        "setup.cfg"
+        "setup.cfg",
+        "manage.py",
+        "run make",
+        "rake"
       ],
       "tier": "low",
       "reason": "Environment hygiene, lint runs, syntax formatting, and lightweight configurations"
@@ -197,23 +191,6 @@
       "matches": ["test", "ping", "clear session", "reset context"],
       "tier": "low",
       "reason": "Deterministic system check patterns and workflow diagnostics"
-    },
-    {
-      "matches": [
-        "system design",
-        "infrastructure",
-        "db replica",
-        "sharding",
-        "deep dive",
-        "benchmark",
-        "profile",
-        "hang",
-        "stuck",
-        "slowdown",
-        "freeze"
-      ],
-      "tier": "high",
-      "reason": "Fallback high-level structural planning and performance investigation keywords"
     }
   ],
   "fallbacks": {
