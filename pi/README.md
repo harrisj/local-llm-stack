@@ -10,7 +10,6 @@ Pi famously comes with very few options included. Currently, I am using the foll
 - npm:@alexanderfortin/pi-loaded-tools
 - npm:pi-plan
 - npm:pi-show
-- npm:pi-powerline-footer
 - npm:pi-output-styles
 - npm:pi-context-view
 - npm:pi-tool-missing-guard
@@ -21,12 +20,12 @@ Pi famously comes with very few options included. Currently, I am using the foll
 - npm:@jamesjfoong/pi-ollama
 - npm:@99percentpeople/pi-thinking-fold
 - git:github.com/code-yeongyu/pi-nested-agents-md
-- npm:@narumitw/pi-btw
 - npm:pi-blackhole
-- npm:@kdejaeger/pi-model-router
 - npm:pi-goal-x
 - npm:pi-mcp-adapter
 - npm:model-debugger
+- npm:pi-powerline
+- npm:@yeliu84/pi-model-router
 
 ## System Prompt
 
