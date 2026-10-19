@@ -1,4 +1,98 @@
 ;; =============================================================================
+;; PILISH
+;; =============================================================================
+
+;; IMPORTANT Customize pilish in customize-group to call
+;; fence -m --fence-log-file ~/code/tmp/fence-denials.log -- pi
+
+(defvar +pilish-layout-state nil
+  "Tracks the current layout state of the pilish windows.
+Values can be nil (hidden), 'right-third, or 'fullscreen.")
+
+(defun +pilish-get-window-by-type (type)
+  "Find a pilish window matching TYPE ('chat or 'input)."
+  (cl-find-if
+   (lambda (w)
+     (let ((bname (buffer-name (window-buffer w))))
+       (cond
+        ((eq type 'chat)  (string-match-p "\\*pilish-chat:.*\\*" bname))
+        ((eq type 'input) (string-match-p "\\*pilish-input:.*\\*" bname)))))
+   (window-list)))
+
+(defun +pilish-toggle-layout ()
+  "Cyclically toggle the dual-window pilish environment sequence:
+1. First invocation: Carves a 1/3 slice on the right and boots pilish inside it.
+2. Second invocation: Maximizes the layout to full-screen.
+3. Third invocation: Closes the layout entirely."
+  (interactive)
+  ;; Suppress workspace structural change updates while we reorganize the layout tree
+  (let ((window-configuration-change-hook nil)
+        (inhibit-redisplay t))
+    (cond
+     ;; STATE 1: Hidden -> Suspend +popup & workspaces, carve 1/3 layout slice and launch pilish
+     ((null +pilish-layout-state)
+      (let ((chat-w (+pilish-get-window-by-type 'chat)))
+        (unless chat-w
+          ;; Let-bind +popup and buffer rules to completely isolate this transaction
+          (let* ((+popup-window-parameters nil)
+                 (display-buffer-alist nil)
+                 (right-drawer-w (split-window (frame-root-window) 
+                                               (- (frame-width) (/ (frame-width) 3)) 
+                                               'right)))
+            ;; Move focus inside the freshly carved right drawer before booting
+            (select-window right-drawer-w)
+            
+            ;; Execute pilish inside this dedicated layout slice
+            (if (fboundp 'pilish)
+                (pilish)
+              (call-interactively 'pilish))
+            
+            ;; Re-enforce layout geometry adjustments after pilish draws its 20% input line
+            (let ((new-chat-w (+pilish-get-window-by-type 'chat)))
+              (when (and new-chat-w (window-parent new-chat-w))
+                (let ((window-size-fixed nil)
+                      (window-combination-resize t)
+                      (p-window (window-parent new-chat-w))
+                      (target-width (/ (frame-width) 3)))
+                  (window-resize p-window (- target-width (window-width p-window)) t))))))
+        
+        ;; Explicitly select the input window so you can type immediately
+        (let ((input-w (+pilish-get-window-by-type 'input)))
+          (when input-w (select-window input-w))))
+      (setq +pilish-layout-state 'right-third))
+
+     ;; STATE 2: Right-Third -> Maximize to full screen
+     ((eq +pilish-layout-state 'right-third)
+      (let ((chat-w (+pilish-get-window-by-type 'chat))
+            (input-w (+pilish-get-window-by-type 'input)))
+        (if (and chat-w input-w)
+            (progn
+              ;; Clear out workspace restrictions briefly to mutate frame root layout
+              (let ((window-size-fixed nil))
+                (dolist (w (window-list))
+                  (unless (memq w (list chat-w input-w))
+                    (delete-window w))))
+              ;; Refocus the input pane
+              (select-window input-w)
+              (setq +pilish-layout-state 'fullscreen))
+          (setq +pilish-layout-state nil))))
+
+     ;; STATE 3: Fullscreen -> Close and clear state via native binary toggle
+     ((eq +pilish-layout-state 'fullscreen)
+      (if (fboundp 'pilish-toggle)
+          (pilish-toggle)
+        ;; Fallback structural layout purge
+        (let ((chat-w (+pilish-get-window-by-type 'chat))
+              (input-w (+pilish-get-window-by-type 'input)))
+          (when chat-w (delete-window chat-w))
+          (when input-w (delete-window input-w))))
+      (setq +pilish-layout-state nil)))))
+
+;; Bind to Doom Leader 'SPC c p'
+(map! :leader
+      :desc "Cycle Pilish Layout states" "c p" #'+pilish-toggle-layout)
+
+;; =============================================================================
 ;; 1. GHOSTEL UTILITIES & POPUPS
 ;; =============================================================================
 
