@@ -1,0 +1,19 @@
+# Point to your downloaded GGUF file or local base
+FROM lfm2.5:24b
+
+# Force the ChatML structure used by Liquid AI for system/user boundaries
+TEMPLATE """<|startoftext|><|im_start|>system
+{{ .System }}<|im_end|>
+<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+"""
+
+# Establish structural, deterministic coding & tool-use parameters
+PARAMETER temperature 0.1
+PARAMETER top_k 50
+PARAMETER repeat_penalty 1.05
+
+# Enforce explicit stop parameters for ChatML boundaries
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"

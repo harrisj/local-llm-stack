@@ -1,12 +1,16 @@
 {
   "debug": true,
-  "classifierModels": ["ollama/granite:8b"],
-  "classifierModelThinking": "off",
   "defaultContextThresholdPercent": 85,
+  "stickyTierDurationTurns": 2,
+  "stickyTierCooldownTurns": 2,
+  "classifierModel": null,
+  "classifier": {
+    "enabled": false
+  },
   "profiles": {
     "auto": {
       "low": {
-        "model": "ollama/granite:8b",
+        "model": "ollama/granite-8b-pi:latest",
         "contextWindow": 65536,
         "thinking": "off",
         "options": {
@@ -19,25 +23,24 @@
         }
       },
       "medium": {
-        "model": "ollama/mistral:7b",
-        "contextWindow": 64000,
+        "model": "ollama/lfm-pi",
+        "contextWindow": 131072,
         "thinking": "off",
         "options": {
-          "temperature": 0.0,
-          "num_ctx": 64000,
+          "temperature": 0.1,
+          "num_ctx": 131072,
           "num_predict": 8192,
           "num_thread": 8,
-          "f16_kv": false,
           "keep_alive": -1
         }
       },
       "high": {
-        "model": "ollama/granite:30b",
-        "contextWindow": 128000,
+        "model": "ollama/granite-30b-pi:latest",
+        "contextWindow": 131072,
         "thinking": "high",
         "options": {
           "temperature": 0.1,
-          "num_ctx": 128000,
+          "num_ctx": 131072,
           "num_predict": 8192,
           "num_thread": 8,
           "f16_kv": false,
@@ -49,28 +52,64 @@
   },
   "rules": [
     {
-      "matches": "(architecture|design|database|schema|security|race condition|deadlock|memory leak|architect|deep dive|benchmark|profile|refactor project|restructure repo|system design|metaprogramming|gil|concurrency|thread pool|active record|sqlalchemy|\\.sql|\\.(rb|py))",
+      "matches": "(?i)(!high|\\/high|--high|architect|force-high)",
       "tier": "high",
-      "reason": "System optimization and heavy architectural reasoning take absolute priority"
+      "reason": "Manual override flag to force the high reasoning tier immediately"
     },
     {
-      "matches": "(create_goal|get_goal|update_goal|propose_goal_draft|set_goal_tasks|goal_questionnaire|goal_confirmation|goal_topic|\\[GOAL\\]|__goal__|<goal_topic>|\\/goal)",
+      "matches": "(?i)(!medium|\\/medium|--medium|force-medium)",
+      "tier": "medium",
+      "reason": "Manual override flag to force the medium coding tier immediately"
+    },
+    {
+      "matches": "(?i)(!low|\\/low|--low|force-low)",
+      "tier": "low",
+      "reason": "Manual override flag to force the low tier immediately"
+    },
+    {
+      "matches": "(?i)(create_goal|get_goal|update_goal|propose_goal_draft|set_goal_tasks|goal_questionnaire|goal_confirmation|goal_topic|\\[GOAL\\]|__goal__|<goal_topic>|\\/goal)",
       "tier": "high",
       "reason": "Pi-Goal orchestrator strings lock into high reasoning mode"
     },
     {
-      "matches": "(?i)\\b(write|implement|create|generate|patch|refactor|modify|update_goal_task)\\b|\\.(js|ts|go|cpp|rs|java)",
-      "tier": "medium",
-      "reason": "Standard code modification and explicit multi-file implementation pipelines"
+      "matches": "(?i)(refactor project|restructure repo|system design|metaprogramming|race condition|deadlock|memory leak|deep dive|benchmark|profile|gil|concurrency|thread pool|active record|sqlalchemy|freeze|hang|stuck|slowdown|optimize|scale|async|await|parallel|lock|mutex|semaphore|architecture|design|database|schema|security)",
+      "tier": "high",
+      "reason": "Heavy architectural reasoning, structural refactoring, and concurrency patterns"
     },
     {
-      "matches": "(?i)\\b(regex|json|yaml|toml|markdown|md|csv|log|logs|print|echo|format|lint|prettier|eslint|ruff|black|pip|npm|install|bump|version|typo|fix_typo|comment|comments|docs|docstring|rubocop|flake8|autopep8|yard|pydoc|bundle|gem|rake|pipenv|poetry|run (the )?test(s)?|rspec|pytest|unittest|Gemfile|pyproject\\.toml|requirements\\.txt|Pipfile|\\.txt|\\.ini|\\.cfg|\\.conf|version|ping|help|clear|status|git status|ls|dir|pwd|document|add comments|write tests|generate boilerplate)\\b",
+      "matches": "(?i)\\b(write|implement|create|generate|patch|refactor|modify|update_goal_task|fix|debug|error|exception|fail|failed|stacktrace|traceback|uncaught|bug|issue|add feature)\\b",
+      "tier": "medium",
+      "reason": "Standard code modification, standard debugging, and feature additions"
+    },
+    {
+      "matches": "(?i)\\b\\w+\\.(js|ts|go|cpp|rs|java|py|rb|sql)\\b",
+      "tier": "medium",
+      "reason": "Standard programming and query language script interaction"
+    },
+    {
+      "matches": "(?i)\\b(regex|json|yaml|toml|markdown|md|csv|log|logs|print|echo|format|lint|prettier|eslint|ruff|black|pip|npm|install|bump|version|typo|fix_typo|comment|comments|docs|docstring|rubocop|flake8|autopep8|yard|pydoc|bundle|gem|rake|pipenv|poetry|run (the )?test(s)?|rspec|pytest|unittest|version|ping|help|clear|status|git|commit|push|pull|checkout|branch|merge|status|ls|dir|pwd|document|add comments|write tests|generate boilerplate)\\b",
       "tier": "low",
-      "reason": "Lightweight formatting, testing, and dependency tasks bypass heavier tiers entirely"
+      "reason": "Lightweight formatting, Git operations, testing environments, and metadata updates"
+    },
+    {
+      "matches": "(?i)\\b\\w+\\.(txt|ini|cfg|conf|toml|json|yaml|md)\\b",
+      "tier": "low",
+      "reason": "Config and documentation file extensions filtered to low tier"
+    },
+    {
+      "matches": ".*",
+      "tier": "low",
+      "reason": "Catch-all default rule to ensure unmatched basic conversational tasks go to low tier"
     }
   ],
   "fallbacks": {
-    "ollama/granite:30b": ["ollama/mistral:7b"],
-    "ollama/mistral:7b": ["ollama/granite:8b"]
+    "ollama/granite-30b-pi:latest": ["ollama/lfm-pi:latest"],
+    "ollama/lfm-pi:latest": ["ollama/granite-8b-pi:latest"]
+  },
+  "phaseMemory": true,
+  "minTurnsPerTier": 2,
+  "phaseMemoryConfig": {
+    "decayRate": 0.5,
+    "boostRulesTier": true
   }
 }

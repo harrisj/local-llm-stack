@@ -9,7 +9,6 @@
     "npm:@alexanderfortin/pi-loaded-tools",
     "npm:pi-plan",
     "npm:pi-show",
-    "npm:pi-powerline-footer",
     "npm:pi-output-styles",
     "npm:pi-context-view",
     "npm:pi-tool-missing-guard",
@@ -25,7 +24,8 @@
     "npm:@kdejaeger/pi-model-router",
     "npm:pi-goal-x",
     "npm:pi-mcp-adapter",
-    "npm:model-debugger"
+    "npm:model-debugger",
+    "npm:pi-powerline"
   ],
   "theme": "dark",
   "compaction": {
@@ -47,16 +47,12 @@
   "router.retry.delayMs": 5000,
   "enabledModels": [
     "ollama/gemma4:26b",
-    "ollama/granite-30b:latest",
-    "ollama/granite-3b:latest",
-    "ollama/granite-8b:latest",
     "ollama/starcoder2:15b",
     "ollama/devstral-pi:latest",
-    "ollama/mistral-pi:latest",
-    "ollama/granite:30b",
-    "ollama/granite:8b",
-    "ollama/mistral:7b",
-    "router/auto"
+    "router/auto",
+    "ollama/granite-8b-pi:latest",
+    "ollama/granite-30b-pi:latest",
+    "ollama/lfm-pi:latest"
   ],
   "powerline": "default",
   "extensions": [

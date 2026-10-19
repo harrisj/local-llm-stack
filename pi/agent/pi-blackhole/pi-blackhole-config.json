@@ -36,7 +36,7 @@
   "compactAfterPreset": "default",
   "observationsPoolMaxTokens": 20000,
   "reflectionsPoolMaxTokens": 8000,
-  "observeOnShutdown": true,
+  "observeOnShutdown": false,
   "fullFoldAlways": true,
   "reflectionTimestamps": true,
   "reflectionSupersedes": false,
@@ -50,6 +50,6 @@
   "agentMaxTurns": 16,
   "memory": true,
   "debugLog": false,
-  "statusBar": true,
+  "statusBar": false,
   "showWorkerNotifications": true
 }
