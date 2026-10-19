@@ -211,9 +211,15 @@ a 24B model from Mistral that is trained on coding data. It is NOT as ethically
 transparent as Granite (they keep their training sources secret), but it is
 supposed to be trained on Github repositories and follow European regulations.
 
-I also am evaluating the Liquid AI 
+I also am evaluating the Liquid AI Mixture of Experts model instead of Devstral.
+What I like about it is that it supports thinking mode and uses a Mixture of
+Experts approach to be usable on laptops, etc. I'm not sure about how its data
+was sourced however. I will need to look into that. In a few cases, I've found
+"ethical" models that are really just enhanced training of existing models like
+Qwen or Open-GPT where there are questions about sourcing. Not sure if this will
+be an issue here too.
 
-This works for now, but I'll keep revising as I see fit and new models are released.
+In any event, I'll keep revising as I see fit and new models are released.
 
 ## Making It All Fit
 
