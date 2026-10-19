@@ -99,6 +99,23 @@ constrained enough that I need to make choices too. If you want to run even
 bigger models or have more resident in memory simultaneously, definitely get
 more RAM than me.
 
+## My Coding Harness
+
+I chose the [Pi Coding Framework](https://pi.dev/) because it is the most
+minimal framework out of the box with a large number of extensions. This matters
+to me because I wanted to tweak some things like model routing, etc. but also I
+am running models on my machine that might not have a large context window. If
+you are a beginner to all this and want to use a cloud model or single model
+locally with a large context window, forks like
+[oh-my-pi](https://github.com/can1357/oh-my-pi) come with more batteries
+included. But OMP's SYSTEM prompt (the first thing sent to the LLM model) is 20k
+tokens. Pi's is a lot smaller.
+
+There is a risk to using a minimal framework. It offers no safety guardrails out
+of the box. I appreciate the honesty here and use an external program to run pi
+in a sandbox, but you should be careful if you are running pi locally without
+any protections.
+
 ## The Model Router Approach
 
 Originally, I wound up manually switching between a few differently sized models
