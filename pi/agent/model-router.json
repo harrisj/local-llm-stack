@@ -1,13 +1,26 @@
 {
   "debug": true,
-  "defaultContextThresholdPercent": 85,
-  "stickyTierDurationTurns": 2,
-  "stickyTierCooldownTurns": 2,
+  "defaultContextThresholdPercent": 80,
+  "contextThresholdPercentOverrides": {
+    "ollama/granite-8b-pi:latest": 75,
+    "ollama/lfm-pi:latest": 85,
+    "ollama/granite-30b-pi:latest": 80
+  },
+  "maxContextTokens": 131072,
+  "onContextOverflow": "truncate",
   "classifierModel": "ollama/pi-classifier:latest",
   "classifierModels": ["ollama/pi-classifier:latest"],
   "classifier": {
     "enabled": true,
     "models": ["ollama/pi-classifier:latest"]
+  },
+  "stickyTierDurationTurns": 4,
+  "stickyTierCooldownTurns": 1,
+  "minTurnsPerTier": 1,
+  "phaseMemory": true,
+  "phaseMemoryConfig": {
+    "decayRate": 0.1,
+    "boostRulesTier": false
   },
   "profiles": {
     "auto": {
@@ -21,7 +34,8 @@
           "num_predict": 4096,
           "num_thread": 8,
           "f16_kv": false,
-          "keep_alive": -1
+          "keep_alive": -1,
+          "timeout": "60s"
         }
       },
       "medium": {
@@ -33,7 +47,8 @@
           "num_ctx": 131072,
           "num_predict": 8192,
           "num_thread": 8,
-          "keep_alive": -1
+          "keep_alive": -1,
+          "timeout": "90s"
         }
       },
       "high": {
@@ -46,17 +61,62 @@
           "num_predict": 8192,
           "num_thread": 8,
           "f16_kv": false,
-          "keep_alive": 0,
-          "system": "You are executing an autonomous goal loop. Use your deep internal reasoning to orchestrate complex architectural strategies."
+          "keep_alive": "1m",
+          "system": "You are executing an autonomous goal loop. Use your deep internal reasoning to orchestrate complex architectural strategies.",
+          "timeout": "300s"
         }
       }
     }
   },
   "rules": [
     {
-      "matches": ["create_goal", "get_goal", "update_goal", "[goal]", "/goal"],
+      "matches": ["!high", "/high", "--high", "architect", "force-high"],
+      "tier": "high",
+      "reason": "Explicit manual overrides to force the heavy reasoning model"
+    },
+    {
+      "matches": ["!medium", "/medium", "--medium", "force-medium"],
       "tier": "medium",
-      "reason": "Goal workflow indicators forced straight to medium tier"
+      "reason": "Manual override flag forcing standard implementation tier"
+    },
+    {
+      "matches": ["!low", "/low", "--low", "force-low"],
+      "tier": "low",
+      "reason": "Manual override flag forcing lightweight low tier"
+    },
+    {
+      "matches": [
+        "race condition",
+        "deadlock",
+        "memory leak",
+        "gil ",
+        "mutex",
+        "semaphore",
+        "crash dump"
+      ],
+      "tier": "high",
+      "reason": "Strict runtime concurrency bugs and engine-level diagnostics that warrant single-turn 30B analysis"
+    },
+    {
+      "matches": [
+        "create_goal",
+        "get_goal",
+        "update_goal",
+        "propose_goal_draft",
+        "set_goal_tasks",
+        "goal_questionnaire",
+        "goal_confirmation",
+        "goal_topic",
+        "[goal]",
+        "__goal__",
+        "<goal_topic>",
+        "/goal",
+        "update_goal_task",
+        "goal loop",
+        "orchestration loop"
+      ],
+      "tier": "medium",
+      "reason": "Pi-Goal orchestrations and planning workloads intercepted by the medium tier to bypass high stickiness"
     },
     {
       "matches": [
@@ -66,18 +126,94 @@
         "generate",
         "patch",
         "refactor",
+        "modify",
+        "update",
         "migrate",
-        "serializer",
-        "pydantic",
-        "django"
+        "port",
+        "translate",
+        "integrate",
+        "api compatibility",
+        "function ",
+        "import "
       ],
       "tier": "medium",
-      "reason": "Activity-based programming verbs forced to medium tier"
+      "reason": "Standard coding actions, migrations, feature implementation, and Django ecosystem pipelines"
     },
     {
-      "matches": ["hello", "hi", "hey", "echo", "say hello", "greetings"],
+      "matches": [
+        "continue",
+        "next",
+        "go ahead",
+        "ok",
+        "yes",
+        "proceed",
+        "run it",
+        "execute"
+      ],
+      "tier": "medium",
+      "reason": "Egress Escape: Conversational continuations explicitly drop the router back down to the medium tier"
+    },
+    {
+      "matches": [
+        "print",
+        "echo",
+        "format",
+        "lint",
+        "prettier",
+        "eslint",
+        "ruff",
+        "black",
+        "pip",
+        "npm",
+        "install",
+        "bump",
+        "version",
+        "typo",
+        "fix typo",
+        "comment",
+        "comments",
+        "docs",
+        "docstring",
+        "rubocop",
+        "flake8",
+        "autopep8",
+        "run tests",
+        "pytest",
+        "unittest",
+        "readme",
+        "changelog",
+        "yaml",
+        "toml",
+        "json",
+        "ini",
+        "cfg",
+        "conf",
+        "setup.cfg"
+      ],
       "tier": "low",
-      "reason": "Trivial interactions filtered to low tier"
+      "reason": "Environment hygiene, lint runs, syntax formatting, and lightweight configurations"
+    },
+    {
+      "matches": ["test", "ping", "clear session", "reset context"],
+      "tier": "low",
+      "reason": "Deterministic system check patterns and workflow diagnostics"
+    },
+    {
+      "matches": [
+        "system design",
+        "infrastructure",
+        "db replica",
+        "sharding",
+        "deep dive",
+        "benchmark",
+        "profile",
+        "hang",
+        "stuck",
+        "slowdown",
+        "freeze"
+      ],
+      "tier": "high",
+      "reason": "Fallback high-level structural planning and performance investigation keywords"
     }
   ],
   "fallbacks": {

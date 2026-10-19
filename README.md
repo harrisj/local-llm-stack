@@ -105,11 +105,35 @@ Originally, I wound up manually switching between a few differently sized models
 to get a feel for it. More recently, I have switched to a "model router"
 configuration where code looks at the complexity of the incoming task and makes
 a decision which model to route it too. First, it sees if there is a regexp
-match and then it'll use the Granite-8b model to examine the task complexity if
+match and then it'll use a tiny little classifer model to examine the task complexity if
 that task fails.
 
 This configuration is highly experimental and likely to change as I observe its
-performance and tweak parameters.
+performance and tweak parameters. There is going to be a lot of tweaking,
+because I'm trying to do a few different optimizations at once!
+
+If you look at the [internal code for the pi-model-router I'm using](https://github.com/yeliu84/pi-model-router/blob/b919a041f30e60e7c34c216e5a1e453359e24e2d/extensions/routing.ts#L144), it's pretty sophisticated in how it makes a routing decision:
+
+1. First look to see if the user has pinned a specific tier
+2. Then try to see if we can match one of the user-defined rules
+3. Otherwise, try to see if we can match some internal heuristics even if the user didn't define their own rules
+4. Finally, if all else fails, ask the classifier.
+
+In addition, there is some logic to support "stickiness" in routing decisions.
+The problem of switching between models is that the model you switch to has to
+ingest all of the context of the conversation first to get up to speed. Ollama's
+internal caching helps with that when doing multiple turns with the same model,
+but when switching to a different model, it has to catch up on all the stuff the
+other model did since the new model last ran. "Ping-ponging" between two models
+can actually be worse because of this, so it's sometimes good to just stick to
+the same model for multiple turns regardless of the task complexity.
+
+The problem here is that the biggest model I have is much slower than the other
+two. I want stickiness in general, but not for that. I also want it to only be
+invoked when there are things that the middle and lower tiers can't handle that
+well. So, you'll see me doing some tweaks over time to try to make it so the
+lower models handle 80% of the tasks with the big model swapping in for when
+it's really needed and hopefully exiting immediately after.
 
 ## The Problems of an "Ethical" Model
 
@@ -149,6 +173,8 @@ For that, I've turned to [Devstral Small 2](https://mistral.ai/news/devstral/),
 a 24B model from Mistral that is trained on coding data. It is NOT as ethically
 transparent as Granite (they keep their training sources secret), but it is
 supposed to be trained on Github repositories and follow European regulations.
+
+I also am evaluating the Liquid AI 
 
 This works for now, but I'll keep revising as I see fit and new models are released.
 
