@@ -32,6 +32,15 @@
           "codemode": true
         },
         {
+          "id": "lfm-pi:latest",
+          "name": "LFM Pi Agent",
+          "contextWindow": 131072,
+          "maxTokens": 4096,
+          "timeout": 300000,
+          "compatibility": "ollama",
+          "codemode": true
+        },
+        {
           "id": "granite-30b:latest",
           "name": "Granite 4.2 30B",
           "contextWindow": 131072,

@@ -3,9 +3,11 @@
   "defaultContextThresholdPercent": 85,
   "stickyTierDurationTurns": 2,
   "stickyTierCooldownTurns": 2,
-  "classifierModel": null,
+  "classifierModel": "ollama/pi-classifier:latest",
+  "classifierModels": ["ollama/pi-classifier:latest"],
   "classifier": {
-    "enabled": false
+    "enabled": true,
+    "models": ["ollama/pi-classifier:latest"]
   },
   "profiles": {
     "auto": {
@@ -23,7 +25,7 @@
         }
       },
       "medium": {
-        "model": "ollama/lfm-pi",
+        "model": "ollama/lfm-pi:latest",
         "contextWindow": 131072,
         "thinking": "off",
         "options": {
@@ -77,29 +79,14 @@
       "reason": "Heavy architectural reasoning, structural refactoring, and concurrency patterns"
     },
     {
-      "matches": "(?i)\\b(write|implement|create|generate|patch|refactor|modify|update_goal_task|fix|debug|error|exception|fail|failed|stacktrace|traceback|uncaught|bug|issue|add feature)\\b",
-      "tier": "medium",
-      "reason": "Standard code modification, standard debugging, and feature additions"
-    },
-    {
       "matches": "(?i)\\b\\w+\\.(js|ts|go|cpp|rs|java|py|rb|sql)\\b",
       "tier": "medium",
-      "reason": "Standard programming and query language script interaction"
-    },
-    {
-      "matches": "(?i)\\b(regex|json|yaml|toml|markdown|md|csv|log|logs|print|echo|format|lint|prettier|eslint|ruff|black|pip|npm|install|bump|version|typo|fix_typo|comment|comments|docs|docstring|rubocop|flake8|autopep8|yard|pydoc|bundle|gem|rake|pipenv|poetry|run (the )?test(s)?|rspec|pytest|unittest|version|ping|help|clear|status|git|commit|push|pull|checkout|branch|merge|status|ls|dir|pwd|document|add comments|write tests|generate boilerplate)\\b",
-      "tier": "low",
-      "reason": "Lightweight formatting, Git operations, testing environments, and metadata updates"
+      "reason": "Standard programming and query language script interaction shortcut"
     },
     {
       "matches": "(?i)\\b\\w+\\.(txt|ini|cfg|conf|toml|json|yaml|md)\\b",
       "tier": "low",
       "reason": "Config and documentation file extensions filtered to low tier"
-    },
-    {
-      "matches": ".*",
-      "tier": "low",
-      "reason": "Catch-all default rule to ensure unmatched basic conversational tasks go to low tier"
     }
   ],
   "fallbacks": {
