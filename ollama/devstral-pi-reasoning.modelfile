@@ -1,0 +1,11 @@
+# Pull the recommended Q5 GGUF directly from Hugging Face
+FROM hf.co/adamjen/Devstral-Small-2-24B-Opus-Reasoning:Q5_K_M
+
+# Set the context window to 64k tokens
+PARAMETER num_ctx 65536
+
+# Set the temperature for coding/reasoning
+PARAMETER temperature 0.7
+
+# Configure the Mistral [INST] chat template
+TEMPLATE """{{ if .System }}[INST] {{ .System }} [/INST]{{ end }}{{ if .Prompt }}[INST] {{ .Prompt }} [/INST]{{ end }}"""

@@ -32,6 +32,19 @@
           "codemode": true
         },
         {
+          "id": "devstral-pi-reasoning:latest",
+          "name": "Devstral Pi Agent",
+          "contextWindow": 65536,
+          "maxTokens": 4096,
+          "timeout": 300000,
+          "compatibility": "ollama",
+          "codemode": true,
+          "reasoning": true,
+          "compat": {
+            "supportsReasoningEffort": true
+          }
+        },
+        {
           "id": "lfm-pi:latest",
           "name": "LFM Pi Agent",
           "contextWindow": 131072,

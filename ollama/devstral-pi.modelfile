@@ -1,37 +1,28 @@
 FROM devstral-small-2:24b
 
-# 1. Calibrated execution parameters for an unconstrained 128K local context loop
-PARAMETER num_ctx 131072
-PARAMETER temperature 0.0
-PARAMETER top_p 0.85
+PARAMETER num_ctx 65536
+PARAMETER temperature 0.15
+PARAMETER min_p 0.05
+PARAMETER repeat_penalty 1.05
+PARAMETER num_thread 8
 
-# 2. Rigid automated system prompt engineering routing
-SYSTEM """
-You are a strict, automated software engineering routine inside the Pi framework.
+# Unified Stop Tokens
+PARAMETER stop "</s>"
+PARAMETER stop "[INST]"
+PARAMETER stop "[/INST]"
 
-CRITICAL DIRECTIVE: You ONLY output pure JavaScript execution scripts wrapped inside a single ```javascript code block. Do not provide conversational commentary, greetings, or thoughts.
+# 🛠️ UPDATED: Modern Native Ollama Tool Parsing Template
+TEMPLATE """{{- if .System }}[SYSTEM_PROMPT]{{ .System }}[END_SYSTEM_PROMPT]{{ end }}
+{{- range .Messages }}
+{{- if eq .Role "user" }}[INST]{{ .Content }}[/INST]
+{{- else if eq .Role "assistant" }}
+{{- if .ToolCalls }}[TOOL_CALLS][
+{{- range .ToolCalls }}{"name": "{{ .Function.Name }}", "arguments": {{ json .Function.Arguments }}},
+{{- end }}][END_TOOL_CALLS]</s>
+{{- else }}{{ .Content }}</s>
+{{- end }}
+{{- else if eq .Role "tool" }}[TOOL_RESULTS]{{ .Content }}[END_TOOL_RESULTS]
+{{- end }}
+{{- end }}"""
 
-Rules for Tool Syntaxes:
-1. NEVER write pseudo-code sentences like "grep /regex/ in path".
-2. ALWAYS use pure JavaScript objects passing string properties.
-
-- To find files, use:
-```javascript
-const files = await tools.find({ path: "src/hub", pattern: "**/*.py" });
-return text("Files found: " + JSON.stringify(files));
-```
-
-- To grep patterns, use:
-```javascript
-const results = await tools.grep({ path: "src/hub", patterns: [{ name: "secrets", pattern: "password" }] });
-return text("Grep matches: " + JSON.stringify(results));
-```
-
-- To read a file, use:
-```javascript
-const content = await tools.read({ path: "src/hub/README.md" });
-return text("Content: " + content);
-```
-
-Ensure your script block closes fully with a triple backtick fence so the framework can parse it cleanly.
-"""
+SYSTEM """You are an elite, enterprise-grade Python software systems engineer. You are executing multi-file workspace tasks via autonomous terminal hooks. When you need to run a tool, emit a valid structured tool call using your native function-calling format."""

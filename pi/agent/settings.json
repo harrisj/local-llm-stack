@@ -2,10 +2,9 @@
   "defaultModel": "auto",
   "defaultProvider": "router",
   "thinking_effort": "low",
-  "lastChangelogVersion": "1.2.0",
+  "lastChangelogVersion": "1.3.0",
   "httpIdleTimeoutMs": 0,
   "packages": [
-    "npm:@alexanderfortin/pi-loaded-tools",
     "npm:pi-plan",
     "npm:pi-show",
     "npm:pi-context-view",
@@ -15,13 +14,16 @@
     "npm:@henryqw/pi-ask-question",
     "npm:pi-ponytail",
     "npm:@jamesjfoong/pi-ollama",
-    "npm:@99percentpeople/pi-thinking-fold",
     "git:github.com/code-yeongyu/pi-nested-agents-md",
     "npm:pi-blackhole",
-    "npm:pi-goal-x",
     "npm:pi-mcp-adapter",
     "npm:model-debugger",
-    "npm:@yeliu84/pi-model-router"
+    "npm:@yeliu84/pi-model-router",
+    "npm:billion-context",
+    "npm:pi-thinking-steps",
+    "npm:@capyup/pi-goal",
+    "npm:pi-loop-police",
+    "npm:pi-python"
   ],
   "theme": "dark",
   "compaction": {
@@ -48,7 +50,9 @@
     "router/auto",
     "ollama/granite-8b-pi:latest",
     "ollama/granite-30b-pi:latest",
-    "ollama/lfm-pi:latest"
+    "ollama/lfm-pi:latest",
+    "ollama/mistral-pi:latest",
+    "ollama/pi-classifier:latest"
   ],
   "powerline": "default",
   "extensions": [

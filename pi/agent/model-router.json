@@ -3,7 +3,7 @@
   "defaultContextThresholdPercent": 80,
   "contextThresholdPercentOverrides": {
     "ollama/granite-8b-pi:latest": 75,
-    "ollama/lfm-pi:latest": 85,
+    "ollama/devstral-pi-reasoning:latest": 90,
     "ollama/granite-30b-pi:latest": 80
   },
   "maxContextTokens": 131072,
@@ -34,12 +34,12 @@
         }
       },
       "medium": {
-        "model": "ollama/lfm-pi:latest",
-        "contextWindow": 131072,
+        "model": "ollama/devstral-pi-reasoning:latest",
+        "contextWindow": 65536,
         "thinking": "off",
         "options": {
-          "temperature": 0.1,
-          "num_ctx": 131072,
+          "temperature": 0.7,
+          "num_ctx": 65536,
           "num_predict": 8192,
           "num_thread": 8,
           "keep_alive": -1,
@@ -194,7 +194,7 @@
     }
   ],
   "fallbacks": {
-    "ollama/granite-30b-pi:latest": ["ollama/lfm-pi:latest"],
-    "ollama/lfm-pi:latest": ["ollama/granite-8b-pi:latest"]
+    "ollama/granite-30b-pi:latest": ["ollama/devstral-pi-reasoning:latest"],
+    "ollama/devstral-pi-reasoning:latest": ["ollama/granite-8b-pi:latest"]
   }
 }
