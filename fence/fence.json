@@ -17,7 +17,14 @@
       "/Users/harrisj/code/personal/local-llm-stack/pi",
       "/Users/harrisj/.local",
       "/Users/harrisj/.cache",
-      "/Users/harrisj/.config/mcp"
+      "/Users/harrisj/.config/mcp",
+      "/Users/harrisj/.config/ponytail",
+      "/Users/harrisj/.config/billion-context/",
+      "/Users/harrisj/.agents",
+      "/Users/harrisj/Library/Preferences",
+      "/Users/harrisj/.gitconfig",
+      "/Users/harrisj/.npmrc",
+      "/Users/harrisj/package.json"
     ],
     "allowWrite": [
       ".",
@@ -28,7 +35,11 @@
       "/Users/harrisj/code/personal/local-llm-stack/pi",
       "/Users/harrisj/.local",
       "/Users/harrisj/.cache",
-      "/Users/harrisj/.config/mcp"
+      "/Users/harrisj/.config/mcp",
+      "/Users/harrisj/.config/ponytail",
+      "/Users/harrisj/.config/billion-context/",
+      "/Users/harrisj/.agents",
+      "/Users/harrisj/Library/Preferences"
     ]
   },
   "network": {
@@ -48,16 +59,22 @@
       "rubygems.org",
       "melpa.org",
       "nist.gov",
-      "stackoverflow.com"
+      "stackoverflow.com",
+      "pi.dev"
     ],
+    "allowLocalBinding": true,
     "allowLocalOutbound": true,
-    "allowLocalOutboundPorts": [
-      8080, 8081, 8082, 11431, 6767, 6768, 6379, 5432, 39235
-    ]
+    "allowLocalOutboundPorts": []
   },
   "macos": {
     "mach": {
-      "lookup": ["mul-xpc (Apple)_OpenStep", "com.apple.diagnosticd"]
+      "lookup": [
+        "mul-xpc (Apple)_OpenStep",
+        "com.apple.diagnosticd",
+        "com.apple.GSSCred",
+        "com.apple.CoreServices.coreservicesd",
+        "com.apple.DiskArbitration.diskarbitrationd"
+      ]
     }
   },
   "command": {
