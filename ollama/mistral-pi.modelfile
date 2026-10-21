@@ -1,0 +1,23 @@
+FROM mistral-small:24b
+
+# 1. Hardware-Optimized Inference Loop Parameters
+PARAMETER num_ctx 65536
+PARAMETER num_predict 4096
+PARAMETER num_thread 8
+PARAMETER temperature 0.0
+PARAMETER top_p 0.85
+
+# 2. Strict Template Architecture forcing Native Tool Alignment
+TEMPLATE """{{- if .System }}[INST] {{ .System }} [/INST]
+{{- end }}
+{{- if .Tools }}[AVAILABLE_TOOLS] {{ .Tools }}[/AVAILABLE_TOOLS]
+{{- end }}
+{{- range .Messages }}
+  {{- if eq .Role "user" }}[INST] {{ .Content }} [/INST]
+  {{- else if eq .Role "assistant" }}
+    {{- if .ToolCalls }}[TOOL_CALLS] {{ .ToolCalls }}[/TOOL_CALLS]
+    {{- else }}{{ .Content }}
+    {{- end }}
+  {{- else if eq .Role "tool" }}[TOOL_RESULTS] {{ .Content }}[/TOOL_RESULTS]
+  {{- end }}
+{{- end }}"""

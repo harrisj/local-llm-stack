@@ -19,7 +19,6 @@
     "npm:pi-mcp-adapter",
     "npm:model-debugger",
     "npm:@yeliu84/pi-model-router",
-    "npm:billion-context",
     "npm:pi-thinking-steps",
     "npm:@capyup/pi-goal",
     "npm:pi-loop-police",
@@ -43,17 +42,6 @@
   "router.timeoutMs": 300000,
   "router.retry.maxRetries": 5,
   "router.retry.delayMs": 5000,
-  "enabledModels": [
-    "ollama/gemma4:26b",
-    "ollama/starcoder2:15b",
-    "ollama/devstral-pi:latest",
-    "router/auto",
-    "ollama/granite-8b-pi:latest",
-    "ollama/granite-30b-pi:latest",
-    "ollama/lfm-pi:latest",
-    "ollama/mistral-pi:latest",
-    "ollama/pi-classifier:latest"
-  ],
   "powerline": "default",
   "extensions": [
     "-builtin:mcp"

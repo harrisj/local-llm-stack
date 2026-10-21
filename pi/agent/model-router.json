@@ -3,7 +3,7 @@
   "defaultContextThresholdPercent": 80,
   "contextThresholdPercentOverrides": {
     "ollama/granite-8b-pi:latest": 75,
-    "ollama/devstral-pi-reasoning:latest": 90,
+    "ollama/mistral-pi:latest": 90,
     "ollama/granite-30b-pi:latest": 80
   },
   "maxContextTokens": 131072,
@@ -34,13 +34,13 @@
         }
       },
       "medium": {
-        "model": "ollama/devstral-pi-reasoning:latest",
+        "model": "ollama/devstral-pi:latest",
         "contextWindow": 65536,
         "thinking": "off",
         "options": {
-          "temperature": 0.7,
+          "temperature": 0.0,
           "num_ctx": 65536,
-          "num_predict": 8192,
+          "num_predict": 4096,
           "num_thread": 8,
           "keep_alive": -1,
           "timeout": "90s"
@@ -185,7 +185,7 @@
         "rake"
       ],
       "tier": "low",
-      "reason": "Environment hygiene, lint runs, syntax formatting, and lightweight configurations"
+      "reason": "Environment hygiene, lint runs, syntax formatting, and lightweight configurations safely handled by Granite-8B tools"
     },
     {
       "matches": ["test", "ping", "clear session", "reset context"],
@@ -194,7 +194,7 @@
     }
   ],
   "fallbacks": {
-    "ollama/granite-30b-pi:latest": ["ollama/devstral-pi-reasoning:latest"],
-    "ollama/devstral-pi-reasoning:latest": ["ollama/granite-8b-pi:latest"]
+    "ollama/granite-30b-pi:latest": ["ollama/mistral-pi:latest"],
+    "ollama/mistral-pi:latest": ["ollama/granite-8b-pi:latest"]
   }
 }

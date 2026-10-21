@@ -1,0 +1,57 @@
+{
+  "baseUrl": "http://127.0.0.1:11434",
+  "apiKey": "NONE",
+  "api": "openai-completions",
+  "prefix": "/v1",
+  "authHeader": true,
+  "preserveThinking": true,
+  "rawStream": true,
+  "compat": {
+    "supportsDeveloperRole": false,
+    "supportsSystemRole": false,
+    "supportsReasoningEffort": false,
+    "rewriteSystemMessages": "user"
+  },
+  "modelOverrides": {
+    "granite-8b-pi:latest": {
+      "contextWindow": 65536,
+      "reasoning": false
+    },
+    "devstral-pi-reasoning:latest": {
+      "reasoning": true,
+      "contextWindow": 32768,
+      "maxTokens": 8192,
+      "compat": {
+        "thinkingFormat": "deepseek"
+      }
+    },
+    "devstral-pi:latest": {
+      "contextWindow": 65536,
+      "reasoning": false,
+      "maxTokens": 4096
+    },
+    "mistral-pi:latest": {
+      "contextWindow": 65536,
+      "reasoning": false,
+      "maxTokens": 4096,
+      "compat": {
+        "supportsDeveloperRole": false,
+        "supportsSystemRole": false,
+        "tools": true,
+        "json": true
+      }
+    },
+    "granite-30b-pi:latest": {
+      "contextWindow": 131072,
+      "maxTokens": 8192,
+      "reasoning": true,
+      "compat": {
+        "thinkingFormat": "openai"
+      }
+    },
+    "starcoder2:15b": {
+      "contextWindow": 32768
+    }
+  },
+  "version": 1
+}
