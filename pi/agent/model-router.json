@@ -17,6 +17,7 @@
   "stickyTierDurationTurns": 1,
   "minTurnsPerTier": 1,
   "phaseMemory": false,
+  "defaultProfile": "granite",
   "profiles": {
     "auto": {
       "low": {
@@ -30,7 +31,8 @@
           "num_thread": 8,
           "f16_kv": false,
           "keep_alive": -1,
-          "timeout": "60s"
+          "timeout": "60s",
+          "stop": ["</tool_call>", "</function>", "</parameter>"]
         }
       },
       "medium": {
@@ -58,6 +60,56 @@
           "f16_kv": false,
           "keep_alive": "1m",
           "system": "You are executing an autonomous goal loop. Use your deep internal reasoning to orchestrate complex architectural strategies.",
+          "stop": ["</tool_call>", "</function>", "</parameter>"],
+          "timeout": "300s"
+        }
+      }
+    },
+    "granite": {
+      "low": {
+        "model": "ollama/granite-8b-pi:latest",
+        "contextWindow": 65536,
+        "thinking": "off",
+        "options": {
+          "think": false,
+          "temperature": 0.0,
+          "num_ctx": 65536,
+          "num_predict": 4096,
+          "num_thread": 8,
+          "f16_kv": false,
+          "keep_alive": -1,
+          "timeout": "45s",
+          "stop": ["</tool_call>", "</function>", "</parameter>"]
+        }
+      },
+      "medium": {
+        "model": "ollama/granite-8b-pi:latest",
+        "contextWindow": 65536,
+        "thinking": "high",
+        "options": {
+          "think": "high",
+          "temperature": 0.2,
+          "num_ctx": 65536,
+          "num_predict": 8192,
+          "num_thread": 8,
+          "keep_alive": -1,
+          "timeout": "120s"
+        }
+      },
+      "high": {
+        "model": "ollama/granite-30b-pi:latest",
+        "contextWindow": 131072,
+        "thinking": "high",
+        "options": {
+          "think": "high",
+          "temperature": 0.3,
+          "num_ctx": 131072,
+          "num_predict": 8192,
+          "num_thread": 8,
+          "f16_kv": false,
+          "keep_alive": -1,
+          "system": "You are executing an autonomous goal loop inside the Pi framework. Use your deep internal reasoning to orchestrate complex architectural strategies.",
+          "stop": ["</tool_call>", "</function>", "</parameter>"],
           "timeout": "300s"
         }
       }
@@ -91,6 +143,20 @@
       ],
       "tier": "high",
       "reason": "Strict runtime concurrency bugs and engine-level diagnostics that warrant single-turn 30B analysis"
+    },
+    {
+      "matches": [
+        "propose_goal_draft",
+        "goal_question",
+        "goal_questionnaire",
+        "update_goal",
+        "get_goal",
+        "apply_goal_tweak",
+        "abort_goal",
+        "pause_goal"
+      ],
+      "tier": "high",
+      "reason": "Intercepts native goal tool calls and locks the session into the Granite-30B reasoning tier"
     },
     {
       "matches": [
