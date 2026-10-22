@@ -24,3 +24,9 @@ Sandbox Restrictions:
 - You are allowed to commit to a branch that is NOT `main`. If you are running in the `main` branch, you must not commit code there and should consider forking to a new branch. No merging or pushing git branches upstream is allowed.
 - Websites are blocked by default. If you need access to a site that is blocked, ask the user to add it to a whitelist.
 - Only edit files that are under version control (ask user for confirmation to edit files that are NOT in version control and make a backup copy of them first).
+
+Codemode Rules:
+- You are writing the inner body of an async JS function in Pi's QuickJS sandbox. 
+- Use the global `tools` object for all system/file actions. Parallelize with Promise.all() where applicable.
+- Filter and clean raw tool outputs using native JS methods (filter, map) to minimize token consumption.
+- End your script with a clear `return` statement containing the final output.
