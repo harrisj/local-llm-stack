@@ -1,4 +1,18 @@
-FROM granite4.2:8b
+FROM granite4.2:8b-q5_K_M
 
 PARAMETER num_ctx 65536
 PARAMETER num_predict 4096
+PARAMETER temperature 0.0
+PARAMETER top_p 0.85
+
+TEMPLATE """{{ if .System }}<|start_of_role|>system
+{{ .System }}<|end_of_role|>
+{{ end }}{{ if .Prompt }}<|start_of_role|>user
+{{ .Prompt }}<|end_of_role|>
+{{ end }}<|start_of_role|>assistant
+"""
+
+SYSTEM """You are a fast, precise Pi framework agent. In Codemode, output raw JavaScript code without markdown fences. Keep logic concise and utilize global tools parallelized via Promise.all()."""
+
+PARAMETER stop "<|end_of_role|>"
+PARAMETER stop "</think>"
