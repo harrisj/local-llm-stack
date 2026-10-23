@@ -3,13 +3,6 @@ FROM granite4.2:30b
 PARAMETER num_ctx 131072
 PARAMETER num_predict 8192
 
-TEMPLATE """{{ if .System }}<|start_of_role|>system
-{{ .System }}<|end_of_role|>
-{{ end }}{{ if .Prompt }}<|start_of_role|>user
-{{ .Prompt }}<|end_of_role|>
-{{ end }}<|start_of_role|>assistant
-"""
-
 # Stricter syntax enforcement for the Q4 quantization tier
 SYSTEM """You are the deep-reasoning core for the Pi framework. 
 CRITICAL RULES FOR CODEMODE:
@@ -17,6 +10,3 @@ CRITICAL RULES FOR CODEMODE:
 2. Absolutely NO markdown block formatting (do not use triple backticks ```).
 3. Do not print the string '</think>' inside your final code logic. 
 Use your thinking phase to map out all async operations cleanly before outputting the raw script."""
-
-PARAMETER stop "<|end_of_role|>"
-PARAMETER stop "</think>"

@@ -22,7 +22,8 @@
     "npm:pi-thinking-steps",
     "npm:@capyup/pi-goal",
     "npm:pi-loop-police",
-    "npm:pi-python"
+    "npm:pi-python",
+    "npm:pi-tool-repair"
   ],
   "theme": "dark",
   "compaction": {

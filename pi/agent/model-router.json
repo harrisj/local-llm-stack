@@ -31,8 +31,7 @@
           "num_thread": 8,
           "f16_kv": false,
           "keep_alive": -1,
-          "timeout": "60s",
-          "stop": ["</tool_call>", "</function>", "</parameter>"]
+          "timeout": "60s"
         }
       },
       "medium": {
@@ -60,7 +59,6 @@
           "f16_kv": false,
           "keep_alive": "1m",
           "system": "You are executing an autonomous goal loop. Use your deep internal reasoning to orchestrate complex architectural strategies.",
-          "stop": ["</tool_call>", "</function>", "</parameter>"],
           "timeout": "300s"
         }
       }
@@ -155,8 +153,8 @@
         "abort_goal",
         "pause_goal"
       ],
-      "tier": "high",
-      "reason": "Intercepts native goal tool calls and locks the session into the Granite-30B reasoning tier"
+      "tier": "medium",
+      "reason": "Intercepts native goal tool calls and routes to a reasoning tier"
     },
     {
       "matches": [
@@ -199,9 +197,7 @@
     {
       "matches": [
         "continue",
-        "next",
         "go ahead",
-        "ok",
         "yes",
         "proceed",
         "run it",
