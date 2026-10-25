@@ -20,10 +20,10 @@
     "npm:model-debugger",
     "npm:@yeliu84/pi-model-router",
     "npm:pi-thinking-steps",
-    "npm:@capyup/pi-goal",
     "npm:pi-loop-police",
     "npm:pi-python",
-    "npm:pi-tool-repair"
+    "npm:pi-tool-repair",
+    "npm:pi-goal-x"
   ],
   "theme": "dark",
   "compaction": {

@@ -29,7 +29,6 @@
           "num_ctx": 65536,
           "num_predict": 4096,
           "num_thread": 8,
-          "f16_kv": false,
           "keep_alive": -1,
           "timeout": "60s"
         }
@@ -56,7 +55,6 @@
           "num_ctx": 131072,
           "num_predict": 8192,
           "num_thread": 8,
-          "f16_kv": false,
           "keep_alive": "1m",
           "system": "You are executing an autonomous goal loop. Use your deep internal reasoning to orchestrate complex architectural strategies.",
           "timeout": "300s"
@@ -153,7 +151,7 @@
         "abort_goal",
         "pause_goal"
       ],
-      "tier": "medium",
+      "tier": "high",
       "reason": "Intercepts native goal tool calls and routes to a reasoning tier"
     },
     {
@@ -193,18 +191,6 @@
       ],
       "tier": "medium",
       "reason": "Standard performance profiling, code optimization, and loop diagnostics handled in the medium tier"
-    },
-    {
-      "matches": [
-        "continue",
-        "go ahead",
-        "yes",
-        "proceed",
-        "run it",
-        "execute"
-      ],
-      "tier": "medium",
-      "reason": "Egress Escape: Conversational continuations explicitly drop the router back down to the medium tier"
     },
     {
       "matches": [
@@ -256,7 +242,7 @@
     }
   ],
   "fallbacks": {
-    "ollama/granite-30b-pi:latest": ["ollama/mistral-pi:latest"],
-    "ollama/mistral-pi:latest": ["ollama/granite-8b-pi:latest"]
+    "ollama/granite-30b-pi:latest": ["ollama/granite-8b-pi:latest"],
+    "ollama/granite-8b-pi:latest": []
   }
 }
