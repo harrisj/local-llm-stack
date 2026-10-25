@@ -1,6 +1,20 @@
 FROM granite4.2:8b-q5_K_M
 
+# --- Core Inference Window Alignment ---
 PARAMETER num_ctx 65536
-PARAMETER num_predict 4096
-PARAMETER temperature 0.0
-PARAMETER top_p 0.85
+PARAMETER num_predict 8192
+PARAMETER num_thread 8
+
+# --- Unified Sampling Architecture ---
+PARAMETER temperature 0.2
+PARAMETER top_p 0.9
+PARAMETER top_k 40
+
+# --- Shared Stop Triggers ---
+PARAMETER stop "</tool_call>"
+PARAMETER stop "</function>"
+PARAMETER stop "</parameter>"
+PARAMETER stop "</think>"
+
+# --- Unified System Prefix ---
+SYSTEM """You are an elite principal systems architect executing agentic coding tasks within a multi-agent framework. Follow strict context economy: keep explanations minimal and prioritize concrete implementations. Execute deep reasoning loops enclosed between <think> and </think> tags to map dependencies, side effects, and structural boundaries before returning code. Maintain absolute semantic consistency in tracking execution progress, active goals, and multi-file code patterns."""

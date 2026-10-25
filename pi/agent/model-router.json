@@ -12,11 +12,26 @@
   "classifierModels": ["ollama/pi-classifier:latest"],
   "classifier": {
     "enabled": true,
-    "models": ["ollama/pi-classifier:latest"]
+    "models": ["ollama/pi-classifier:latest"],
+    "options": {
+      "temperature": 0.0,
+      "num_ctx": 4096,
+      "num_predict": 64,
+      "keep_alive": -1
+    },
+    "systemPrompt": "You are a highly efficient, deterministic model router classifier. Your sole job is to categorize the user's latest workspace request into one of three structural tiers: 'high', 'medium', or 'low'.\n\nTIER CRITERIA:\n- high: Deep architectural planning, complex concurrency analysis, multi-module dependency refactoring, or critical diagnostic tracing.\n- medium: Focused feature implementations, multi-file code modifications, standard performance optimization profiling, or unit test generation.\n- low: Environment hygiene, code linting, syntax formatting adjustments, typo fixes, or lightweight read-only configuration lookups.\n\nOUTPUT FORMAT:\nReturn your decision in exactly two lines with no extra text or markdown formatting:\nTier: [high|medium|low]\nReasoning: [One short sentence detailing the key technical vector mapping the request to this tier]",
+    "promptTemplate": "Context State Summary:\n{phase_summary}\n\nRecent Turn History:\n{history}\n\nLatest Workspace Command/Message:\n{prompt}\n\nCompute optimal execution layer classification immediately according to system constraints."
   },
-  "stickyTierDurationTurns": 1,
+  "stickyTierDurationTurns": 2,
   "minTurnsPerTier": 1,
-  "phaseMemory": false,
+  "phaseMemory": {
+    "enabled": true,
+    "strategy": "planning_summary",
+    "targetTiers": ["high"],
+    "summaryModel": "ollama/granite-8b-pi:latest",
+    "maxSummaryTokens": 4096,
+    "prompt": "Analyze the multi-turn agentic history above. Synthesize a dense, comprehensive architectural planning summary. Stripping away verbose lint logs, raw file buffers, tool traces, and echo streams. Maintain only file impacts, structural decisions, code-base dependencies, and active goals required by a heavier reasoning model to resume implementation flawlessly."
+  },
   "defaultProfile": "granite",
   "profiles": {
     "auto": {
@@ -56,7 +71,6 @@
           "num_predict": 8192,
           "num_thread": 8,
           "keep_alive": "1m",
-          "system": "You are executing an autonomous goal loop. Use your deep internal reasoning to orchestrate complex architectural strategies.",
           "timeout": "300s"
         }
       }
@@ -65,17 +79,17 @@
       "low": {
         "model": "ollama/granite-8b-pi:latest",
         "contextWindow": 65536,
-        "thinking": "off",
+        "thinking": "high",
         "options": {
-          "think": false,
+          "think": true,
           "temperature": 0.0,
           "num_ctx": 65536,
-          "num_predict": 4096,
+          "num_predict": 2048,
           "num_thread": 8,
-          "f16_kv": false,
+          "top_p": 0.9,
+          "top_k": 40,
           "keep_alive": -1,
-          "timeout": "45s",
-          "stop": ["</tool_call>", "</function>", "</parameter>"]
+          "timeout": "45s"
         }
       },
       "medium": {
@@ -83,10 +97,12 @@
         "contextWindow": 65536,
         "thinking": "high",
         "options": {
-          "think": "high",
+          "think": true,
           "temperature": 0.2,
           "num_ctx": 65536,
           "num_predict": 8192,
+          "top_p": 0.9,
+          "top_k": 40,
           "num_thread": 8,
           "keep_alive": -1,
           "timeout": "120s"
@@ -97,15 +113,14 @@
         "contextWindow": 131072,
         "thinking": "high",
         "options": {
-          "think": "high",
+          "think": true,
           "temperature": 0.3,
           "num_ctx": 131072,
           "num_predict": 8192,
+          "top_p": 0.9,
+          "top_k": 40,
           "num_thread": 8,
-          "f16_kv": false,
           "keep_alive": -1,
-          "system": "You are executing an autonomous goal loop inside the Pi framework. Use your deep internal reasoning to orchestrate complex architectural strategies.",
-          "stop": ["</tool_call>", "</function>", "</parameter>"],
           "timeout": "300s"
         }
       }
