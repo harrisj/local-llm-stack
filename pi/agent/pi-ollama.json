@@ -30,6 +30,11 @@
       "reasoning": false,
       "maxTokens": 4096
     },
+    "olmo-7b-pi:latest": {
+      "contextWindow": 65536,
+      "mode": "only",
+      "inlineBudget": 4000
+    },
     "mistral-pi:latest": {
       "contextWindow": 65536,
       "reasoning": false,

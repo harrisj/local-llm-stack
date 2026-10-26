@@ -17,14 +17,16 @@
       "/Users/harrisj/code/personal/local-llm-stack/pi",
       "/Users/harrisj/.local",
       "/Users/harrisj/.cache",
+      "/Users/harrisj/.caveman/**",
       "/Users/harrisj/.config/mcp",
       "/Users/harrisj/.config/ponytail",
-      "/Users/harrisj/.config/billion-context/",
+      "/Users/harrisj/.pi-lens",
       "/Users/harrisj/.agents",
       "/Users/harrisj/Library/Preferences",
       "/Users/harrisj/.gitconfig",
       "/Users/harrisj/.npmrc",
-      "/Users/harrisj/package.json"
+      "/Users/harrisj/package.json",
+      "/Users/harrisj/Library/Application Support/rtk/config.toml"
     ],
     "allowWrite": [
       ".",
@@ -35,9 +37,10 @@
       "/Users/harrisj/code/personal/local-llm-stack/pi",
       "/Users/harrisj/.local",
       "/Users/harrisj/.cache",
+      "/Users/harrisj/.caveman/**",
       "/Users/harrisj/.config/mcp",
       "/Users/harrisj/.config/ponytail",
-      "/Users/harrisj/.config/billion-context/",
+      "/Users/harrisj/.pi-lens",
       "/Users/harrisj/.agents",
       "/Users/harrisj/Library/Preferences"
     ]
@@ -64,7 +67,8 @@
     ],
     "allowLocalBinding": true,
     "allowLocalOutbound": true,
-    "allowLocalOutboundPorts": []
+    "allowLocalOutboundPorts": [],
+    "allowUnixSockets": ["/Users/harrisj/.caveman/run/native.sock"]
   },
   "macos": {
     "mach": {

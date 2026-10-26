@@ -25,13 +25,9 @@
   "stickyTierDurationTurns": 2,
   "minTurnsPerTier": 1,
   "phaseMemory": {
-    "enabled": true,
-    "strategy": "planning_summary",
-    "targetTiers": ["high"],
-    "summaryModel": "ollama/granite-8b-pi:latest",
-    "maxSummaryTokens": 4096,
-    "prompt": "Analyze the multi-turn agentic history above. Synthesize a dense, comprehensive architectural planning summary. Stripping away verbose lint logs, raw file buffers, tool traces, and echo streams. Maintain only file impacts, structural decisions, code-base dependencies, and active goals required by a heavier reasoning model to resume implementation flawlessly."
+    "enabled": false
   },
+  "compactionEngine": "blackhole",
   "defaultProfile": "granite",
   "profiles": {
     "auto": {
@@ -55,7 +51,7 @@
         "options": {
           "think": true,
           "num_ctx": 65536,
-          "num_predict": 4096,
+          "num_predict": 8192,
           "num_thread": 8,
           "keep_alive": -1,
           "timeout": "90s"
@@ -81,7 +77,7 @@
         "contextWindow": 65536,
         "thinking": "off",
         "options": {
-          "think": true,
+          "think": false,
           "num_ctx": 65536,
           "num_predict": 2048,
           "num_thread": 8,
@@ -109,9 +105,49 @@
         "options": {
           "think": true,
           "num_ctx": 65536,
+          "num_thread": 8,
+          "keep_alive": -1,
+          "timeout": "300s"
+        }
+      }
+    },
+    "hybrid": {
+      "low": {
+        "model": "ollama/granite-8b-pi:latest",
+        "contextWindow": 65536,
+        "thinking": "off",
+        "options": {
+          "think": false,
+          "num_ctx": 65536,
+          "num_predict": 2048,
+          "num_thread": 8,
+          "keep_alive": -1,
+          "timeout": "45s"
+        }
+      },
+      "medium": {
+        "model": "ollama/olmo-7b-pi:latest",
+        "contextWindow": 65536,
+        "thinking": "medium",
+        "options": {
+          "think": true,
+          "num_ctx": 65536,
           "num_predict": 8192,
           "num_thread": 8,
           "keep_alive": -1,
+          "timeout": "120s"
+        }
+      },
+      "high": {
+        "model": "ollama/granite-30b-pi:latest",
+        "contextWindow": 65536,
+        "thinking": "high",
+        "options": {
+          "think": true,
+          "num_ctx": 65536,
+          "num_predict": 8192,
+          "num_thread": 8,
+          "keep_alive": "5m",
           "timeout": "300s"
         }
       }
@@ -176,10 +212,7 @@
         "integrate",
         "endpoint",
         "route",
-        "class ",
-        "def ",
-        "function ",
-        "import "
+        "fix"
       ],
       "tier": "medium",
       "reason": "Pure implementation, feature writing, and codebase modification verbs intercepted by the medium tier"
@@ -233,6 +266,7 @@
         "ini",
         "cfg",
         "conf",
+        "count",
         "setup.cfg",
         "manage.py",
         "run make",

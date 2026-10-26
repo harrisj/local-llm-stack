@@ -1,0 +1,36 @@
+# Save as: Modelfile-7b-think-shared
+FROM olmo-3:7b
+
+# 1. Lower temperature limits divergence and recursive loops
+PARAMETER temperature 0.1
+PARAMETER top_p 0.85
+
+# 2. Apply a strict repetition penalty to stop it from re-analyzing the same details
+PARAMETER repeat_penalty 1.2
+PARAMETER repeat_last_n 64
+
+# 3. The absolute safety valve: Limit total generation space per turn
+PARAMETER num_predict 250
+
+PARAMETER stop "<|endoftext|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "</thought>"
+
+TEMPLATE """<|im_start|>system
+{{ .System }}{{ if .Tools }}
+You have access to the following tools:
+{{ range .Tools }}- {{ .Function.Name }}: {{ .Function.Description }}
+{{ end }}{{ end }}<|im_end|>
+<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+<thought>
+"""
+
+SYSTEM """You are a highly efficient coding assistant integrated into the Pi Framework.
+
+OPERATIONAL MANDATE:
+1. Keep your internal `<thought>` block ultra-short. State what file you need to check, and then close the block.
+2. Limit your internal planning thoughts to a maximum of 2 sentences.
+3. Every tool call or system command you run MUST be explicitly wrapped inside a markdown code block immediately after closing your thought.
+"""

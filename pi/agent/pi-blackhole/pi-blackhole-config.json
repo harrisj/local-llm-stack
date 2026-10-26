@@ -1,7 +1,7 @@
 {
   "enabled": true,
   "strategy": "compaction",
-  "triggerThresholdPercent": 70,
+  "triggerThresholdPercent": 80,
   "targetReductionPercent": 20,
   "preserveRecentTurns": 4,
   "clearCacheOnModelSwitch": true,
@@ -28,28 +28,57 @@
   "tailBehavior": "minimal",
   "contextPressureFallback": "off",
   "showPreCompactionMessage": true,
-  "retainedToolOutputMaxTokens": 16000,
+  "retainedToolOutputMaxTokens": 4000,
   "recallResponseMaxChars": 40000,
   "midRunCompaction": "off",
-  "observeAfterTokens": 20000,
-  "reflectAfterTokens": 35000,
+  "observeAfterTokens": 16000,
+  "reflectAfterTokens": 50000,
   "compactAfterPreset": "default",
-  "observationsPoolMaxTokens": 16000,
-  "reflectionsPoolMaxTokens": 8000,
+  "observationsPoolMaxTokens": 8000,
+  "reflectionsPoolMaxTokens": 4000,
   "observeOnShutdown": false,
   "fullFoldAlways": true,
   "reflectionTimestamps": true,
   "reflectionSupersedes": false,
-  "observationsPoolTargetTokens": 8000,
-  "reflectorInputMaxTokens": 45000,
-  "dropperInputMaxTokens": 45000,
+  "observationsPoolTargetTokens": 4000,
+  "reflectorInputMaxTokens": 16000,
+  "dropperInputMaxTokens": 16000,
   "dropperPressureThreshold": 0.6,
   "dropperPoolFullnessThreshold": 0.1,
-  "observerChunkMaxTokens": 32000,
+  "observerChunkMaxTokens": 16000,
   "observerPreambleMaxTokens": 0,
   "agentMaxTurns": 16,
   "memory": true,
   "debugLog": false,
   "statusBar": false,
-  "showWorkerNotifications": true
+  "showWorkerNotifications": true,
+  "workers": {
+    "observer": {
+      "model": "ollama/granite-8b-pi:latest",
+      "options": {
+        "think": true,
+        "num_ctx": 16000,
+        "num_predict": 1024,
+        "keep_alive": -1
+      }
+    },
+    "reflector": {
+      "model": "ollama/granite-8b-pi:latest",
+      "options": {
+        "think": true,
+        "num_ctx": 16000,
+        "num_predict": 2048,
+        "keep_alive": -1
+      }
+    },
+    "dropper": {
+      "model": "ollama/granite-8b-pi:latest",
+      "options": {
+        "think": false,
+        "num_ctx": 8000,
+        "num_predict": 512,
+        "keep_alive": -1
+      }
+    }
+  }
 }

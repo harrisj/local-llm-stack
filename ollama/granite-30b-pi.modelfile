@@ -5,8 +5,13 @@ PARAMETER num_ctx 65536
 PARAMETER num_predict 8192
 PARAMETER num_thread 8
 
-# --- Force Large GPU Ingestion Chunks ---
-PARAMETER num_batch 2048
+TEMPLATE """<|im_start|>system
+{{ .System }}<|im_end|>
+<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+<think>
+"""
 
 # --- Unified System Prefix ---
 SYSTEM """You are an elite principal systems architect executing tasks within the Pi multi-agent workspace. 
