@@ -26,7 +26,8 @@
       "/Users/harrisj/.gitconfig",
       "/Users/harrisj/.npmrc",
       "/Users/harrisj/package.json",
-      "/Users/harrisj/Library/Application Support/rtk/config.toml"
+      "/Users/harrisj/Library/Application Support/rtk",
+      "/Users/harrisj/.claude/settings.json"
     ],
     "allowWrite": [
       ".",
@@ -42,7 +43,8 @@
       "/Users/harrisj/.config/ponytail",
       "/Users/harrisj/.pi-lens",
       "/Users/harrisj/.agents",
-      "/Users/harrisj/Library/Preferences"
+      "/Users/harrisj/Library/Preferences",
+      "/Users/harrisj/Library/Application Support/rtk"
     ]
   },
   "network": {
