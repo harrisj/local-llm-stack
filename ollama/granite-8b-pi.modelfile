@@ -2,7 +2,6 @@ FROM granite4.2:8b-q5_K_M
 
 # --- Core Inference Window Alignment ---
 PARAMETER num_ctx 65536
-PARAMETER num_predict 8192
 PARAMETER num_thread 8
 
 # --- Unified System Prefix ---
