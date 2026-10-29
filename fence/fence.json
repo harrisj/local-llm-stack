@@ -27,7 +27,8 @@
       "/Users/harrisj/.npmrc",
       "/Users/harrisj/package.json",
       "/Users/harrisj/Library/Application Support/rtk",
-      "/Users/harrisj/.claude/settings.json"
+      "/Users/harrisj/.claude/settings.json",
+      "/Users/harrisj/.claude/settings.local.json"
     ],
     "allowWrite": [
       ".",
