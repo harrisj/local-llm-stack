@@ -1,0 +1,7 @@
+FROM flint:latest
+
+# Bounding context to 131,072 tokens to match your original medium-tier memory target (~23GB total)
+PARAMETER num_ctx 131072
+
+# Maintain reasoning/thinking token buffers
+PARAMETER num_predict 4096

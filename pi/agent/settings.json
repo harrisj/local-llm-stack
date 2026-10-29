@@ -48,22 +48,18 @@
     "-builtin:mcp"
   ],
   "enabledModels": [
-    "ollama/devstral-pi-reasoning:latest",
     "ollama/devstral-pi:latest",
-    "ollama/devstral-small-2:24b",
     "ollama/gemma4:26b",
     "ollama/granite-30b-pi:latest",
     "ollama/granite-8b-pi:latest",
     "ollama/granite-classifier:latest",
     "ollama/granite4.2:30b",
     "ollama/granite4.2:8b-q5_K_M",
-    "ollama/hf.co/adamjen/Devstral-Small-2-24B-Opus-Reasoning:Q5_K_M",
-    "ollama/lfm-pi:latest",
     "ollama/mistral-pi:latest",
-    "ollama/mistral-small:24b",
     "ollama/olmo-7b-pi:latest",
     "ollama/pi-classifier:latest",
     "ollama/starcoder2:15b",
+    "ollama/flint:latest",
     "router/auto",
     "router/granite",
     "router/hybrid"

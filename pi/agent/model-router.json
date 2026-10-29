@@ -24,37 +24,26 @@
   },
   "stickyTierDurationTurns": 2,
   "minTurnsPerTier": 1,
-  "phaseMemory": {
-    "enabled": false
-  },
+  "phaseBias": 0.85,
   "compactionEngine": "blackhole",
   "defaultProfile": "granite",
   "profiles": {
     "auto": {
       "low": {
-        "model": "ollama/granite-8b-pi:latest",
-        "contextWindow": 65536,
+        "model": "ollama/flint:latest",
         "thinking": "off",
+        "keep_alive": "-1",
         "options": {
-          "think": false,
-          "num_ctx": 65536,
-          "num_predict": 4096,
           "num_thread": 8,
-          "keep_alive": -1,
-          "timeout": "60s"
+          "keep_alive": "-1"
         }
       },
       "medium": {
-        "model": "ollama/devstral-pi:latest",
-        "contextWindow": 65536,
-        "thinking": "off",
+        "model": "ollama/flint:latest",
+        "thinking": "medium",
         "options": {
-          "think": true,
-          "num_ctx": 65536,
-          "num_predict": 8192,
           "num_thread": 8,
-          "keep_alive": -1,
-          "timeout": "90s"
+          "keep_alive": "-1"
         }
       },
       "high": {
@@ -64,9 +53,8 @@
         "options": {
           "think": true,
           "num_ctx": 65536,
-          "num_predict": 8192,
           "num_thread": 8,
-          "keep_alive": "1m",
+          "keep_alive": "-1",
           "timeout": "300s"
         }
       }
