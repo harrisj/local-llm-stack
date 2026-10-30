@@ -66,7 +66,8 @@
       "melpa.org",
       "nist.gov",
       "stackoverflow.com",
-      "pi.dev"
+      "pi.dev",
+      "mcp.context7.com"
     ],
     "allowLocalBinding": true,
     "allowLocalOutbound": true,
@@ -80,18 +81,13 @@
         "com.apple.diagnosticd",
         "com.apple.GSSCred",
         "com.apple.CoreServices.coreservicesd",
-        "com.apple.DiskArbitration.diskarbitrationd"
+        "com.apple.DiskArbitration.diskarbitrationd",
+        "com.apple.analyticsd.messagetracer"
       ]
     }
   },
   "command": {
-    "allow": [
-      "redis-cli",
-      "rg",
-      "find",
-      "/Users/harrisj/.pi/agent/bin/rg",
-      "/Users/harrisj/.pi/agent/bin/fd"
-    ],
+    "allow": ["redis-cli", "rg", "find", "rubocop", "pip", "bundle"],
     "deny": ["git push", "git merge"]
   }
 }
