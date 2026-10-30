@@ -1,5 +1,5 @@
 {
-  "debug": true,
+  "debug": false,
   "defaultContextThresholdPercent": 80,
   "contextThresholdPercentOverrides": {
     "ollama/granite-8b-pi:latest": 75,
@@ -26,7 +26,7 @@
   "minTurnsPerTier": 1,
   "phaseBias": 0.85,
   "compactionEngine": "blackhole",
-  "defaultProfile": "granite",
+  "defaultProfile": "auto",
   "profiles": {
     "auto": {
       "low": {
@@ -95,47 +95,6 @@
           "num_ctx": 65536,
           "num_thread": 8,
           "keep_alive": -1,
-          "timeout": "300s"
-        }
-      }
-    },
-    "hybrid": {
-      "low": {
-        "model": "ollama/granite-8b-pi:latest",
-        "contextWindow": 65536,
-        "thinking": "off",
-        "options": {
-          "think": false,
-          "num_ctx": 65536,
-          "num_predict": 2048,
-          "num_thread": 8,
-          "keep_alive": -1,
-          "timeout": "45s"
-        }
-      },
-      "medium": {
-        "model": "ollama/olmo-7b-pi:latest",
-        "contextWindow": 65536,
-        "thinking": "medium",
-        "options": {
-          "think": true,
-          "num_ctx": 65536,
-          "num_predict": 8192,
-          "num_thread": 8,
-          "keep_alive": -1,
-          "timeout": "120s"
-        }
-      },
-      "high": {
-        "model": "ollama/granite-30b-pi:latest",
-        "contextWindow": 65536,
-        "thinking": "high",
-        "options": {
-          "think": true,
-          "num_ctx": 65536,
-          "num_predict": 8192,
-          "num_thread": 8,
-          "keep_alive": "5m",
           "timeout": "300s"
         }
       }
