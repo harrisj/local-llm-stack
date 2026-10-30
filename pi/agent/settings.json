@@ -1,5 +1,5 @@
 {
-  "defaultModel": "granite",
+  "defaultModel": "auto",
   "defaultProvider": "router",
   "thinking_effort": "low",
   "lastChangelogVersion": "1.4.0",
@@ -9,13 +9,11 @@
     "npm:pi-show",
     "npm:pi-context-view",
     "npm:pi-tool-missing-guard",
-    "npm:@sting8k/pi-utils",
     "npm:@nicknisi/pi-ast-grep",
     "npm:@henryqw/pi-ask-question",
     "npm:pi-ponytail",
     "npm:@jamesjfoong/pi-ollama",
     "git:github.com/code-yeongyu/pi-nested-agents-md",
-    "npm:pi-blackhole",
     "npm:pi-mcp-adapter",
     "npm:model-debugger",
     "npm:@yeliu84/pi-model-router",
@@ -23,7 +21,9 @@
     "npm:pi-python",
     "npm:pi-tool-repair",
     "npm:pi-rtk-optimizer",
-    "npm:@narumitw/pi-goal"
+    "npm:@narumitw/pi-goal",
+    "npm:pi-tidy",
+    "npm:pi-vcc"
   ],
   "theme": "dark",
   "compaction": {
