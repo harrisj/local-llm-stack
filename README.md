@@ -228,13 +228,10 @@ a 24B model from Mistral that is trained on coding data. It is NOT as ethically
 transparent as Granite (they keep their training sources secret), but it is
 supposed to be trained on Github repositories and follow European regulations.
 
-I also am evaluating the Liquid AI Mixture of Experts model instead of Devstral.
+I also am evaluating the [Recursive Flint](https://recursive.com/updates/introducing-recursive-flint) Mixture of Experts model instead of Devstral.
 What I like about it is that it supports thinking mode and uses a Mixture of
 Experts approach to be usable on laptops, etc. I'm not sure about how its data
-was sourced however. I will need to look into that. In a few cases, I've found
-"ethical" models that are really just enhanced training of existing models like
-Qwen or Open-GPT where there are questions about sourcing. Not sure if this will
-be an issue here too.
+was sourced however. I also am not keen that they are using the idiotic "Super Intelligence" terminology now. It is pretty fast for lower tiers though.
 
 In any event, I'll keep revising as I see fit and new models are released.
 
@@ -352,7 +349,7 @@ using as well as additional README files.
 
 ## How I Run Pi
 
-Because I use `fence`, I invoke pi with an shell alias to `fence pi`
+Because I use `fence`, I invoke pi with an shell alias to `fence pi`. In actuality, I really invoke with an alias to `fence -m --fence-log-file ~/code/tmp/fence-denials.log -- pi` so I can see what stuff is being blocked and revise my config as needed.
 
 # One Other System Setting
 
