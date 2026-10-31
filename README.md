@@ -72,8 +72,14 @@ I could use a cloud-hosted LLM/IDE combo like Claude or Codex, but I prefer not 
 - Did I mention I'm cheap?
 
 There is a lot of "I" in that list, and that's the point. These are my personal
-reasons. I have no interest in debating the "correctness" of this list; this is
+reasons. I have no interest in debating the correctness of this list; this is
 just my own personal guidelines that framed this problem for me.
+
+I also have not rigorously compared the options and benchmarked them, etc.
+Because I don't really care that much. Local LLM tweaking has the same vibes as
+premium audiophiles and camera collectors; everybody has their own opinions on
+what the optimal configuration is. I don't pretend that this framework is
+optimal. I am merely providing it as an example.
 
 As an aside, it does seem like there could be a good business/neighborhood
 service of running locally hosted models as a service. These machines would need
