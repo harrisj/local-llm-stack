@@ -213,14 +213,13 @@
         "ini",
         "cfg",
         "conf",
-        "count",
         "setup.cfg",
         "manage.py",
         "run make",
         "rake"
       ],
       "tier": "low",
-      "reason": "Environment hygiene, lint runs, syntax formatting, and lightweight configurations safely handled by Granite-8B tools"
+      "reason": "Environment hygiene, lint runs, syntax formatting, and lightweight configurations safely handled by low tools"
     },
     {
       "matches": ["test", "ping", "clear session", "reset context"],
