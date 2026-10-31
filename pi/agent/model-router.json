@@ -1,5 +1,5 @@
 {
-  "debug": false,
+  "debug": true,
   "defaultContextThresholdPercent": 80,
   "contextThresholdPercentOverrides": {
     "ollama/granite-8b-pi:latest": 75,
@@ -25,7 +25,7 @@
   "stickyTierDurationTurns": 2,
   "minTurnsPerTier": 1,
   "phaseBias": 0.85,
-  "compactionEngine": "blackhole",
+  "compactionEngine": "vcc",
   "defaultProfile": "auto",
   "profiles": {
     "auto": {
@@ -229,7 +229,11 @@
     }
   ],
   "fallbacks": {
-    "ollama/granite-30b-pi:latest": ["ollama/granite-8b-pi:latest"],
+    "ollama/flint:latest": ["ollama/granite-8b-pi:latest"],
+    "ollama/granite-30b-pi:latest": [
+      "ollama/flint:latest",
+      "ollama/granite-8b-pi:latest"
+    ],
     "ollama/granite-8b-pi:latest": []
   }
 }

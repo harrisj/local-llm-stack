@@ -23,7 +23,8 @@
     "npm:pi-rtk-optimizer",
     "npm:@narumitw/pi-goal",
     "npm:pi-tidy",
-    "npm:pi-vcc"
+    "npm:pi-vcc",
+    "npm:@spences10/pi-sqlite-tools"
   ],
   "theme": "dark",
   "compaction": {

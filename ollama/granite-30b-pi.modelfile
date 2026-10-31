@@ -1,7 +1,7 @@
 FROM granite4.2:30b
 
 # --- Heavy Inference Window Alignment ---
-PARAMETER num_ctx 65536
+PARAMETER num_ctx 131072
 PARAMETER num_thread 8
 
 TEMPLATE """<|im_start|>system
