@@ -8,7 +8,6 @@ PARAMETER num_thread 8
 # 2. Keep the hyper-deterministic parameters for agent actions
 PARAMETER temperature 0.2
 PARAMETER top_p 0.95
-PARAMETER num_ctx 32768
 
 # 3. Simplify the system prompt (Devstral already knows it's an engineer)
 SYSTEM """

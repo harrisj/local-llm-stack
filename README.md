@@ -16,7 +16,7 @@ If you don't know me, I'm an experienced software developer who has a somewhat s
 - Anything I am personally responsible for
 - Anything where I could learn something from doing it.
 
-If you want a longer version of this ethos, you can read of few of my blog posts:
+If you want a longer version of this ethos, you can read a few of my blog posts:
 
 - [Why I Don't Vibe Code](https://jacobharr.is/personal/i-dont-vibe-code.html)
 - [The LLM Is Not a Junior Engineer](https://jacobharr.is/personal/llm-not-junior-engineer.html)
@@ -312,7 +312,7 @@ agent isn't that fast.
 
 Which reminds me, what kind of performance am I seeing? It varies depending on
 model size and the size of the context window, but I'm usually pulling about
-1000+ - 100 tokens/second for reading and 15-6 tokens/second for generation.
+1000+ - 100 tokens/second for reading and 15-16 tokens/second for generation.
 Again, this doesn't approach the speed of cloud models, but I'm not running a
 data center.
 
@@ -345,7 +345,7 @@ one project to go work in another.
 
 ## Configurations
 
-Ths directories in this repository contain various configuration options I am
+These directories in this repository contain various configuration options I am
 using as well as additional README files.
 
 - **Ollama**: Ollama modelfiles to tweak my models and important env vars

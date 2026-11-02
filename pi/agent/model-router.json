@@ -7,7 +7,7 @@
     "ollama/granite-30b-pi:latest": 80
   },
   "maxContextTokens": 65536,
-  "onContextOverflow": "truncate",
+  "onContextOverflow": "compact",
   "classifierModel": "ollama/pi-classifier:latest",
   "classifierModels": ["ollama/pi-classifier:latest"],
   "classifier": {
@@ -51,7 +51,7 @@
         "contextWindow": 65536,
         "thinking": "off",
         "options": {
-          "think": true,
+          "think": false,
           "num_ctx": 65536,
           "num_thread": 8,
           "keep_alive": "-1",
@@ -79,10 +79,10 @@
       },
       "high": {
         "model": "inference_coop/regolo/apertus-70b",
-        "contextWindow": 268288,
+        "contextWindow": 262288,
         "thinking": "off",
         "options": {
-          "think": true,
+          "think": false,
           "num_ctx": 262288
         }
       }
@@ -106,7 +106,7 @@
         "contextWindow": 65536,
         "thinking": "off",
         "options": {
-          "think": true,
+          "think": false,
           "num_ctx": 65536,
           "num_predict": 8192,
           "num_thread": 8,
@@ -119,7 +119,7 @@
         "contextWindow": 65536,
         "thinking": "off",
         "options": {
-          "think": true,
+          "think": false,
           "num_ctx": 65536,
           "num_thread": 8,
           "keep_alive": -1,
