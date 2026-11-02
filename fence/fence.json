@@ -67,7 +67,8 @@
       "nist.gov",
       "stackoverflow.com",
       "pi.dev",
-      "mcp.context7.com"
+      "mcp.context7.com",
+      "gateway.inference.coop"
     ],
     "allowLocalBinding": true,
     "allowLocalOutbound": true,

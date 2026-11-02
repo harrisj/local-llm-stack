@@ -2,7 +2,7 @@
   "defaultModel": "auto",
   "defaultProvider": "router",
   "thinking_effort": "low",
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.5.0",
   "httpIdleTimeoutMs": 0,
   "packages": [
     "npm:pi-plan",
@@ -21,10 +21,12 @@
     "npm:pi-python",
     "npm:pi-tool-repair",
     "npm:pi-rtk-optimizer",
-    "npm:@narumitw/pi-goal",
     "npm:pi-tidy",
     "npm:pi-vcc",
-    "npm:@spences10/pi-sqlite-tools"
+    "npm:@spences10/pi-sqlite-tools",
+    "npm:pi-goal-x",
+    "npm:pi-powerline",
+    "npm:pi-model-costs"
   ],
   "theme": "dark",
   "compaction": {
@@ -49,20 +51,25 @@
     "-builtin:mcp"
   ],
   "enabledModels": [
-    "ollama/devstral-pi:latest",
     "ollama/gemma4:26b",
     "ollama/granite-30b-pi:latest",
     "ollama/granite-8b-pi:latest",
     "ollama/granite-classifier:latest",
-    "ollama/granite4.2:30b",
-    "ollama/granite4.2:8b-q5_K_M",
-    "ollama/mistral-pi:latest",
-    "ollama/olmo-7b-pi:latest",
     "ollama/pi-classifier:latest",
     "ollama/starcoder2:15b",
     "ollama/flint:latest",
     "router/auto",
     "router/granite",
-    "router/hybrid"
-  ]
+    "inference_coop/regolo/apertus-70b"
+  ],
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:@jamesjfoong/pi-ollama\",\"scope\":\"user\"}": "1.0.3",
+    "{\"source\":\"git:github.com/code-yeongyu/pi-nested-agents-md\",\"scope\":\"user\"}": "0.1.1",
+    "{\"source\":\"npm:pi-mcp-adapter\",\"scope\":\"user\"}": "7.0.0",
+    "{\"source\":\"npm:pi-python\",\"scope\":\"user\"}": "0.3.2",
+    "{\"source\":\"npm:pi-rtk-optimizer\",\"scope\":\"user\"}": "0.9.0",
+    "{\"source\":\"npm:pi-vcc\",\"scope\":\"user\"}": "0.4.1",
+    "{\"source\":\"npm:@spences10/pi-sqlite-tools\",\"scope\":\"user\"}": "0.0.15",
+    "{\"source\":\"npm:pi-powerline\",\"scope\":\"user\"}": "0.11.2"
+  }
 }

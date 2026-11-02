@@ -1,67 +1,31 @@
 {
   "providers": {
+    "inference_coop": {
+      "api": "openai-completions",
+      "baseUrl": "https://gateway.inference.coop/v1",
+      "apiKey": "${INFERENCE_COOP_API_KEY}",
+      "models": [
+        {
+          "id": "regolo/apertus-70b",
+          "capabilities": ["code", "multilingual"],
+          "context_window": 262144,
+          "compat": {
+            "developer_role": true,
+            "reasoning_effort": false
+          }
+        }
+      ]
+    },
     "ollama": {
       "api": "openai-completions",
       "apiKey": "TERM",
       "baseUrl": "http://127.0.0.1:11434/v1",
       "maxConcurrency": 2,
       "models": [
-        {
-          "id": "starcoder2:15b",
-          "name": "StarCoder2 Fast Utility",
-          "contextWindow": 32768,
-          "compatibility": "ollama",
-          "maxTokens": 32768
-        },
-        {
-          "id": "mistral-pi:latest",
-          "name": "Mistral Pi Baseline",
-          "contextWindow": 131072,
-          "maxTokens": 4096,
-          "timeout": 300000,
-          "compatibility": "ollama",
-          "codemode": true
-        },
-        {
-          "id": "devstral-pi:latest",
-          "name": "Devstral Pi Agent",
-          "contextWindow": 131072,
-          "maxTokens": 4096,
-          "timeout": 300000,
-          "compatibility": "ollama",
-          "codemode": true
-        },
-        {
-          "id": "devstral-pi-reasoning:latest",
-          "name": "Devstral Pi Agent",
-          "contextWindow": 65536,
-          "maxTokens": 4096,
-          "timeout": 300000,
-          "compatibility": "ollama",
-          "codemode": true,
-          "reasoning": true,
-          "compat": {
-            "supportsReasoningEffort": true
-          }
-        },
-        {
-          "id": "lfm-pi:latest",
-          "name": "LFM Pi Agent",
-          "contextWindow": 131072,
-          "maxTokens": 4096,
-          "timeout": 300000,
-          "compatibility": "ollama",
-          "codemode": true
-        },
-        {
-          "id": "granite-30b:latest",
-          "name": "Granite 4.2 30B",
-          "contextWindow": 131072,
-          "maxTokens": 8192,
-          "compatibility": "ollama",
-          "thinking": "high",
-          "thinkingFormat": "string"
-        }
+        { "id": "pi-classifier:latest" },
+        { "id": "granite-8b-pi:latest" },
+        { "id": "granite-30b-pi:latest" },
+        { "id": "flint:latest" }
       ]
     }
   }

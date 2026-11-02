@@ -1,5 +1,5 @@
 {
-  "debug": true,
+  "debug": false,
   "defaultContextThresholdPercent": 80,
   "contextThresholdPercentOverrides": {
     "ollama/granite-8b-pi:latest": 75,
@@ -56,6 +56,34 @@
           "num_thread": 8,
           "keep_alive": "-1",
           "timeout": "300s"
+        }
+      }
+    },
+    "hybrid": {
+      "low": {
+        "model": "ollama/flint:latest",
+        "thinking": "off",
+        "keep_alive": "-1",
+        "options": {
+          "num_thread": 8,
+          "keep_alive": "-1"
+        }
+      },
+      "medium": {
+        "model": "ollama/flint:latest",
+        "thinking": "medium",
+        "options": {
+          "num_thread": 8,
+          "keep_alive": "-1"
+        }
+      },
+      "high": {
+        "model": "inference_coop/regolo/apertus-70b",
+        "contextWindow": 268288,
+        "thinking": "off",
+        "options": {
+          "think": true,
+          "num_ctx": 262288
         }
       }
     },
@@ -132,16 +160,20 @@
     {
       "matches": [
         "propose_goal_draft",
-        "goal_question",
-        "goal_questionnaire",
         "update_goal",
-        "get_goal",
         "apply_goal_tweak",
-        "abort_goal",
-        "pause_goal"
+        "audit_goal",
+        "goal_audit",
+        "goal auditing",
+        "audit goal"
       ],
       "tier": "high",
-      "reason": "Intercepts native goal tool calls and routes to a reasoning tier"
+      "reason": "Goal planning, modification, and auditing that requires intent comprehension"
+    },
+    {
+      "matches": ["get_goal", "pause_goal", "abort_goal"],
+      "tier": "medium",
+      "reason": "Goal state management and retrieval, no deep reasoning"
     },
     {
       "matches": [
