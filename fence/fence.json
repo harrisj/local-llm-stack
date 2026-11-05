@@ -8,16 +8,17 @@
   "extends": "code",
   "filesystem": {
     "defaultDenyRead": true,
+    "allowMMap": true,
     "allowRead": [
       ".",
       "/tmp",
       "/private/tmp",
       "/Users/harrisj/.npm",
-      "/Users/harrisj/.pi",
+      "/Users/harrisj/.pi/**",
       "/Users/harrisj/code/personal/local-llm-stack/pi",
       "/Users/harrisj/.local",
+      "/Users/harrisj/.local/bin",
       "/Users/harrisj/.cache",
-      "/Users/harrisj/.caveman/**",
       "/Users/harrisj/.config/mcp",
       "/Users/harrisj/.config/ponytail",
       "/Users/harrisj/.pi-lens",
@@ -28,7 +29,13 @@
       "/Users/harrisj/package.json",
       "/Users/harrisj/Library/Application Support/rtk",
       "/Users/harrisj/.claude/settings.json",
-      "/Users/harrisj/.claude/settings.local.json"
+      "/Users/harrisj/.claude/settings.local.json",
+      "/Users/harrisj/.rbenv",
+      "/Users/harrisj/.pi/agent/fff",
+      "/Users/harrisj/.pi/agent/fff/**",
+      "/Users/harrisj/.gitignore_global",
+      "/Users/harrisj/.local/share/fff",
+      "/Users/harrisj/.cache/fff"
     ],
     "allowWrite": [
       ".",
@@ -45,7 +52,12 @@
       "/Users/harrisj/.pi-lens",
       "/Users/harrisj/.agents",
       "/Users/harrisj/Library/Preferences",
-      "/Users/harrisj/Library/Application Support/rtk"
+      "/Users/harrisj/Library/Application Support/rtk",
+      "/Users/harrisj/.rbenv",
+      "/Users/harrisj/.pi/agent/fff",
+      "/Users/harrisj/.pi/agent/fff/**",
+      "/Users/harrisj/.local/share/fff",
+      "/Users/harrisj/.cache/fff"
     ]
   },
   "network": {
@@ -68,12 +80,13 @@
       "stackoverflow.com",
       "pi.dev",
       "mcp.context7.com",
-      "gateway.inference.coop"
+      "gateway.inference.coop",
+      "index.rubygems.org"
     ],
     "allowLocalBinding": true,
     "allowLocalOutbound": true,
     "allowLocalOutboundPorts": [],
-    "allowUnixSockets": ["/Users/harrisj/.caveman/run/native.sock"]
+    "allowUnixSockets": []
   },
   "macos": {
     "mach": {
@@ -83,12 +96,26 @@
         "com.apple.GSSCred",
         "com.apple.CoreServices.coreservicesd",
         "com.apple.DiskArbitration.diskarbitrationd",
-        "com.apple.analyticsd.messagetracer"
+        "com.apple.analyticsd.messagetracer",
+        "com.apple.pasteboard.1",
+        "com.apple.analyticsd"
       ]
     }
   },
   "command": {
-    "allow": ["redis-cli", "rg", "find", "rubocop", "pip", "bundle"],
+    "allow": [
+      "redis-cli",
+      "rg",
+      "find",
+      "rubocop",
+      "pip",
+      "bundle",
+      "ruby",
+      "bundle",
+      "python",
+      "env",
+      "/Users/harrisj/.local/bin/pi"
+    ],
     "deny": ["git push", "git merge"]
   }
 }
