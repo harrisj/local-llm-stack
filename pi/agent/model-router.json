@@ -1,148 +1,149 @@
 {
+  "$schema": "https://githubusercontent.com",
   "debug": false,
-  "defaultContextThresholdPercent": 80,
-  "contextThresholdPercentOverrides": {
-    "ollama/granite-8b-pi:latest": 75,
-    "ollama/mistral-pi:latest": 90,
-    "ollama/granite-30b-pi:latest": 80
-  },
-  "maxContextTokens": 65536,
-  "onContextOverflow": "compact",
-  "classifierModel": "ollama/pi-classifier:latest",
-  "classifierModels": ["ollama/pi-classifier:latest"],
-  "classifier": {
-    "enabled": true,
-    "models": ["ollama/pi-classifier:latest"],
-    "options": {
-      "temperature": 0.0,
-      "num_ctx": 4096,
-      "num_predict": 64,
-      "keep_alive": -1
-    },
-    "systemPrompt": "You are a highly efficient, deterministic model router classifier. Your sole job is to categorize the user's latest workspace request into one of three structural tiers: 'high', 'medium', or 'low'.\n\nTIER CRITERIA:\n- high: Deep architectural planning, complex concurrency analysis, multi-module dependency refactoring, or critical diagnostic tracing.\n- medium: Focused feature implementations, multi-file code modifications, standard performance optimization profiling, or unit test generation.\n- low: Environment hygiene, code linting, syntax formatting adjustments, typo fixes, or lightweight read-only configuration lookups.\n\nOUTPUT FORMAT:\nReturn your decision in exactly two lines with no extra text or markdown formatting:\nTier: [high|medium|low]\nReasoning: [One short sentence detailing the key technical vector mapping the request to this tier]",
-    "promptTemplate": "Context State Summary:\n{phase_summary}\n\nRecent Turn History:\n{history}\n\nLatest Workspace Command/Message:\n{prompt}\n\nCompute optimal execution layer classification immediately according to system constraints."
-  },
-  "stickyTierDurationTurns": 2,
-  "minTurnsPerTier": 1,
-  "phaseBias": 0.85,
-  "compactionEngine": "vcc",
   "defaultProfile": "auto",
-  "profiles": {
-    "auto": {
-      "low": {
-        "model": "ollama/flint:latest",
-        "thinking": "off",
-        "keep_alive": "-1",
-        "options": {
-          "num_thread": 8,
-          "keep_alive": "-1"
-        }
-      },
-      "medium": {
-        "model": "ollama/flint:latest",
-        "thinking": "medium",
-        "options": {
-          "num_thread": 8,
-          "keep_alive": "-1"
-        }
-      },
-      "high": {
-        "model": "ollama/granite-30b-pi:latest",
-        "contextWindow": 65536,
-        "thinking": "off",
-        "options": {
-          "think": false,
-          "num_ctx": 65536,
-          "num_thread": 8,
-          "keep_alive": "-1",
-          "timeout": "300s"
-        }
+  "maxContextTokens": 131072,
+  "modes": {
+    "cost": {
+      "policy": {
+        "costSensitivity": 0.8,
+        "escalationHoldTurns": 1
       }
     },
-    "hybrid": {
+    "quality": {
+      "policy": {
+        "costSensitivity": 0.2,
+        "escalationHoldTurns": 4
+      }
+    }
+  },
+
+  "advisor": {
+    "enabled": true,
+    "model": "inference/metis",
+    "timeoutMs": 10000,
+    "reviewEveryRequests": 4,
+    "confidenceThreshold": 0.65,
+    "probabilityThreshold": 0.8,
+    "maxStateTokens": 3000,
+    "context": {
+      "currentLoopMessages": 8,
+      "previousTurns": 2,
+      "maxHistoryTokens": 500,
+      "toolResults": "last-error",
+      "maxToolTokens": 250
+    },
+    "maxRetries": 1
+  },
+
+  "profiles": {
+    "auto": {
+      "advisor": {
+        "models": ["inference/metis"]
+      },
+      "activityPreset": "auto",
+      "activityRouting": {
+        "code": "low",
+        "debug": "medium",
+        "explore": "low",
+        "plan": "high",
+        "review": "medium",
+        "ops": "low",
+        "docs": "micro"
+      },
+      "micro": {
+        "model": "ollama/flint:latest",
+        "thinking": "low",
+        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 256 }
+      },
       "low": {
         "model": "ollama/flint:latest",
-        "thinking": "off",
-        "keep_alive": "-1",
-        "options": {
-          "num_thread": 8,
-          "keep_alive": "-1"
-        }
+        "thinking": "low",
+        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 4096 }
       },
       "medium": {
         "model": "ollama/flint:latest",
         "thinking": "medium",
-        "options": {
-          "num_thread": 8,
-          "keep_alive": "-1"
-        }
+        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 4096 }
       },
       "high": {
         "model": "inference_coop/regolo/apertus-70b",
         "contextWindow": 262288,
-        "thinking": "off",
-        "options": {
-          "think": false,
-          "num_ctx": 262288
-        }
+        "thinking": "high",
+        "options": { "think": true, "num_ctx": 262288 }
       }
     },
-    "granite": {
+    "local": {
+      "activityPreset": "auto",
+      "activityRouting": {
+        "code": "low",
+        "debug": "medium",
+        "explore": "low",
+        "plan": "high",
+        "review": "medium",
+        "ops": "low",
+        "docs": "micro"
+      },
+      "advisor": {
+        "models": ["inference-coop/metis"]
+      },
+      "micro": {
+        "model": "ollama/flint:latest",
+        "thinking": "low",
+        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 256 }
+      },
       "low": {
-        "model": "ollama/granite-8b-pi:latest",
-        "contextWindow": 65536,
-        "thinking": "off",
-        "options": {
-          "think": false,
-          "num_ctx": 65536,
-          "num_predict": 2048,
-          "num_thread": 8,
-          "keep_alive": -1,
-          "timeout": "45s"
-        }
+        "model": "ollama/flint:latest",
+        "thinking": "low",
+        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 4096 }
       },
       "medium": {
-        "model": "ollama/granite-8b-pi:latest",
-        "contextWindow": 65536,
-        "thinking": "off",
-        "options": {
-          "think": false,
-          "num_ctx": 65536,
-          "num_predict": 8192,
-          "num_thread": 8,
-          "keep_alive": -1,
-          "timeout": "120s"
-        }
+        "model": "ollama/flint:latest",
+        "thinking": "medium",
+        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 4096 }
       },
       "high": {
         "model": "ollama/granite-30b-pi:latest",
-        "contextWindow": 65536,
-        "thinking": "off",
-        "options": {
-          "think": false,
-          "num_ctx": 65536,
-          "num_thread": 8,
-          "keep_alive": -1,
-          "timeout": "300s"
-        }
+        "contextWindow": 131072,
+        "thinking": "high",
+        "options": { "num_ctx": 131072, "num_thread": 8, "keep_alive": "-1" }
       }
     }
   },
-  "rules": [
+
+  "heuristics": [
     {
-      "matches": ["!high", "/high", "--high", "architect", "force-high"],
+      "matches": [
+        "!high",
+        "/high",
+        "--high",
+        "force-high",
+        "force-critical",
+        "architecture-plan"
+      ],
       "tier": "high",
-      "reason": "Explicit manual overrides to force the heavy reasoning model"
+      "reason": "Explicit manual overrides to force the heaviest remote or native reasoning model"
     },
     {
-      "matches": ["!medium", "/medium", "--medium", "force-medium"],
+      "matches": [
+        "!medium",
+        "/medium",
+        "--medium",
+        "force-medium",
+        "architect"
+      ],
       "tier": "medium",
-      "reason": "Manual override flag forcing standard implementation tier"
+      "reason": "Explicit manual override flag to activate mid-tier reasoning workflows"
     },
     {
       "matches": ["!low", "/low", "--low", "force-low"],
       "tier": "low",
-      "reason": "Manual override flag forcing lightweight low tier"
+      "reason": "Manual override flag forcing standard implementation tier"
+    },
+    {
+      "matches": ["!micro", "/micro", "--micro", "force-micro"],
+      "tier": "micro",
+      "reason": "Manual override flag forcing lightweight environment tier"
     },
     {
       "matches": [
@@ -152,13 +153,7 @@
         "mutex",
         "semaphore",
         "transaction",
-        "crash dump"
-      ],
-      "tier": "high",
-      "reason": "Strict runtime concurrency bugs and engine-level diagnostics that warrant single-turn 30B analysis"
-    },
-    {
-      "matches": [
+        "crash dump",
         "propose_goal_draft",
         "update_goal",
         "apply_goal_tweak",
@@ -168,12 +163,7 @@
         "audit goal"
       ],
       "tier": "high",
-      "reason": "Goal planning, modification, and auditing that requires intent comprehension"
-    },
-    {
-      "matches": ["get_goal", "pause_goal", "abort_goal"],
-      "tier": "medium",
-      "reason": "Goal state management and retrieval, no deep reasoning"
+      "reason": "Catastrophic runtime bugs, complex architecture analysis, or state planning requiring maximum reasoning capability"
     },
     {
       "matches": [
@@ -194,7 +184,7 @@
         "fix"
       ],
       "tier": "medium",
-      "reason": "Pure implementation, feature writing, and codebase modification verbs intercepted by the medium tier"
+      "reason": "Pure implementation and feature writing verbs mapped to local Flint reasoning"
     },
     {
       "matches": [
@@ -205,10 +195,13 @@
         "hang",
         "freeze",
         "optimize",
-        "performance"
+        "performance",
+        "get_goal",
+        "pause_goal",
+        "abort_goal"
       ],
-      "tier": "medium",
-      "reason": "Standard performance profiling, code optimization, and loop diagnostics handled in the medium tier"
+      "tier": "low",
+      "reason": "Standard diagnostics, state management lookups, or light profiling without deep synthesis needs"
     },
     {
       "matches": [
@@ -250,21 +243,22 @@
         "run make",
         "rake"
       ],
-      "tier": "low",
-      "reason": "Environment hygiene, lint runs, syntax formatting, and lightweight configurations safely handled by low tools"
+      "tier": "micro",
+      "reason": "Environment hygiene, lint runs, syntax formatting, and lightweight configurations safely handled by micro tools"
     },
     {
       "matches": ["test", "ping", "clear session", "reset context"],
-      "tier": "low",
+      "tier": "micro",
       "reason": "Deterministic system check patterns and workflow diagnostics"
     }
   ],
+
   "fallbacks": {
-    "ollama/flint:latest": ["ollama/granite-8b-pi:latest"],
-    "ollama/granite-30b-pi:latest": [
-      "ollama/flint:latest",
-      "ollama/granite-8b-pi:latest"
+    "inference_coop/regolo/apertus-70b": [
+      "ollama/granite-30b-pi:latest",
+      "ollama/flint:latest"
     ],
-    "ollama/granite-8b-pi:latest": []
+    "ollama/granite-30b-pi:latest": ["ollama/flint:latest"],
+    "ollama/flint:latest": []
   }
 }

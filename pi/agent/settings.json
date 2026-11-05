@@ -13,10 +13,8 @@
     "npm:@henryqw/pi-ask-question",
     "npm:pi-ponytail",
     "npm:@jamesjfoong/pi-ollama",
-    "git:github.com/code-yeongyu/pi-nested-agents-md",
     "npm:pi-mcp-adapter",
     "npm:model-debugger",
-    "npm:@yeliu84/pi-model-router",
     "npm:pi-loop-police",
     "npm:pi-python",
     "npm:pi-tool-repair",
@@ -26,7 +24,11 @@
     "npm:@spences10/pi-sqlite-tools",
     "npm:pi-goal-x",
     "npm:pi-powerline",
-    "npm:pi-model-costs"
+    "npm:pi-model-costs",
+    "npm:@alexeiled/pi-model-router",
+    "npm:@alexeiled/pi-provider-compat",
+    "npm:pi-tool-discipline",
+    "npm:@ff-labs/pi-fff"
   ],
   "theme": "dark",
   "compaction": {
@@ -46,6 +48,8 @@
   "router.timeoutMs": 300000,
   "router.retry.maxRetries": 5,
   "router.retry.delayMs": 5000,
+  "enableAnalytics": false,
+  "enableInstallTelemetry": false,
   "powerline": "default",
   "extensions": [
     "-builtin:mcp"
@@ -59,17 +63,20 @@
     "ollama/starcoder2:15b",
     "ollama/flint:latest",
     "router/auto",
-    "router/granite",
-    "inference_coop/regolo/apertus-70b"
+    "inference_coop/regolo/apertus-70b",
+    "router/local"
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"npm:@jamesjfoong/pi-ollama\",\"scope\":\"user\"}": "1.0.3",
     "{\"source\":\"git:github.com/code-yeongyu/pi-nested-agents-md\",\"scope\":\"user\"}": "0.1.1",
-    "{\"source\":\"npm:pi-mcp-adapter\",\"scope\":\"user\"}": "7.0.0",
+    "{\"source\":\"npm:pi-mcp-adapter\",\"scope\":\"user\"}": "7.0.1",
     "{\"source\":\"npm:pi-python\",\"scope\":\"user\"}": "0.3.2",
     "{\"source\":\"npm:pi-rtk-optimizer\",\"scope\":\"user\"}": "0.9.0",
     "{\"source\":\"npm:pi-vcc\",\"scope\":\"user\"}": "0.4.1",
     "{\"source\":\"npm:@spences10/pi-sqlite-tools\",\"scope\":\"user\"}": "0.0.15",
-    "{\"source\":\"npm:pi-powerline\",\"scope\":\"user\"}": "0.11.2"
+    "{\"source\":\"npm:pi-powerline\",\"scope\":\"user\"}": "0.11.2",
+    "{\"source\":\"npm:@alexeiled/pi-model-router\",\"scope\":\"user\"}": "0.19.0",
+    "{\"source\":\"npm:pi-tidy\",\"scope\":\"user\"}": "0.9.0",
+    "{\"source\":\"npm:pi-context-view\",\"scope\":\"user\"}": "0.8.3"
   }
 }
