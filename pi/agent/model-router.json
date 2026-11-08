@@ -114,36 +114,26 @@
   "heuristics": [
     {
       "matches": [
-        "!high",
-        "/high",
-        "--high",
-        "force-high",
-        "force-critical",
+        "^(!high|/high|--high|force-high|force-critical)$",
         "architecture-plan"
       ],
       "tier": "high",
-      "reason": "Explicit manual overrides to force the heaviest remote or native reasoning model"
+      "reason": "Explicit manual overrides to force heavy reasoning tier."
     },
     {
-      "matches": [
-        "!medium",
-        "/medium",
-        "--medium",
-        "force-medium",
-        "architect"
-      ],
+      "matches": ["^(!medium|/medium|--medium|force-medium)$", "architect"],
       "tier": "medium",
-      "reason": "Explicit manual override flag to activate mid-tier reasoning workflows"
+      "reason": "Explicit manual overrides for mid-tier reasoning workflows."
     },
     {
-      "matches": ["!low", "/low", "--low", "force-low"],
+      "matches": ["^(!low|/low|--low|force-low)$"],
       "tier": "low",
-      "reason": "Manual override flag forcing standard implementation tier"
+      "reason": "Manual override flag forcing standard implementation tier."
     },
     {
-      "matches": ["!micro", "/micro", "--micro", "force-micro"],
+      "matches": ["^(!micro|/micro|--micro|force-micro)$"],
       "tier": "micro",
-      "reason": "Manual override flag forcing lightweight environment tier"
+      "reason": "Manual override flag forcing lightweight environment tier."
     },
     {
       "matches": [
@@ -163,45 +153,7 @@
         "audit goal"
       ],
       "tier": "high",
-      "reason": "Catastrophic runtime bugs, complex architecture analysis, or state planning requiring maximum reasoning capability"
-    },
-    {
-      "matches": [
-        "write",
-        "implement",
-        "create",
-        "generate",
-        "patch",
-        "refactor",
-        "modify",
-        "update",
-        "migrate",
-        "port",
-        "translate",
-        "integrate",
-        "endpoint",
-        "route",
-        "fix"
-      ],
-      "tier": "medium",
-      "reason": "Pure implementation and feature writing verbs mapped to local Flint reasoning"
-    },
-    {
-      "matches": [
-        "profile",
-        "benchmark",
-        "slowdown",
-        "stuck",
-        "hang",
-        "freeze",
-        "optimize",
-        "performance",
-        "get_goal",
-        "pause_goal",
-        "abort_goal"
-      ],
-      "tier": "low",
-      "reason": "Standard diagnostics, state management lookups, or light profiling without deep synthesis needs"
+      "reason": "High-priority catastrophic runtime bugs and planning metrics evaluated BEFORE simple verbs."
     },
     {
       "matches": [
@@ -241,15 +193,31 @@
         "setup.cfg",
         "manage.py",
         "run make",
-        "rake"
+        "rake",
+        "test",
+        "ping",
+        "clear session",
+        "reset context"
       ],
       "tier": "micro",
-      "reason": "Environment hygiene, lint runs, syntax formatting, and lightweight configurations safely handled by micro tools"
+      "reason": "Environment hygiene and syntax checks evaluated before broader action verbs."
     },
     {
-      "matches": ["test", "ping", "clear session", "reset context"],
-      "tier": "micro",
-      "reason": "Deterministic system check patterns and workflow diagnostics"
+      "matches": [
+        "profile",
+        "benchmark",
+        "slowdown",
+        "stuck",
+        "hang",
+        "freeze",
+        "optimize",
+        "performance",
+        "get_goal",
+        "pause_goal",
+        "abort_goal"
+      ],
+      "tier": "low",
+      "reason": "Standard performance profiling metrics."
     }
   ],
 

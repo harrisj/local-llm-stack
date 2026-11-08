@@ -16,7 +16,6 @@
     "npm:pi-mcp-adapter",
     "npm:model-debugger",
     "npm:pi-loop-police",
-    "npm:pi-python",
     "npm:pi-tool-repair",
     "npm:pi-rtk-optimizer",
     "npm:pi-tidy",
@@ -28,7 +27,12 @@
     "npm:@alexeiled/pi-model-router",
     "npm:@alexeiled/pi-provider-compat",
     "npm:pi-tool-discipline",
-    "npm:@ff-labs/pi-fff"
+    "npm:@ff-labs/pi-fff",
+    "npm:context-mode",
+    "git:github.com/therynamo/pi-changed-files",
+    "npm:@demigodmode/pi-web-agent",
+    "npm:pi-list-tools",
+    "npm:pi-playwright"
   ],
   "theme": "dark",
   "compaction": {
@@ -76,7 +80,8 @@
     "{\"source\":\"npm:@spences10/pi-sqlite-tools\",\"scope\":\"user\"}": "0.0.15",
     "{\"source\":\"npm:pi-powerline\",\"scope\":\"user\"}": "0.11.2",
     "{\"source\":\"npm:@alexeiled/pi-model-router\",\"scope\":\"user\"}": "0.19.0",
-    "{\"source\":\"npm:pi-tidy\",\"scope\":\"user\"}": "0.9.0",
-    "{\"source\":\"npm:pi-context-view\",\"scope\":\"user\"}": "0.8.3"
+    "{\"source\":\"npm:pi-tidy\",\"scope\":\"user\"}": "0.9.1",
+    "{\"source\":\"npm:pi-context-view\",\"scope\":\"user\"}": "0.8.3",
+    "{\"source\":\"npm:@demigodmode/pi-web-agent\",\"scope\":\"user\"}": "1.16.0"
   }
 }
