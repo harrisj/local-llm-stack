@@ -35,7 +35,9 @@
       "/Users/harrisj/.pi/agent/fff/**",
       "/Users/harrisj/.gitignore_global",
       "/Users/harrisj/.local/share/fff",
-      "/Users/harrisj/.cache/fff"
+      "/Users/harrisj/.cache/fff",
+      "/Users/harrisj/.context-mode",
+      "/Users/harrisj/.yarnrc"
     ],
     "allowWrite": [
       ".",
@@ -57,7 +59,8 @@
       "/Users/harrisj/.pi/agent/fff",
       "/Users/harrisj/.pi/agent/fff/**",
       "/Users/harrisj/.local/share/fff",
-      "/Users/harrisj/.cache/fff"
+      "/Users/harrisj/.cache/fff",
+      "/Users/harrisj/.context-mode"
     ]
   },
   "network": {
