@@ -16,36 +16,5 @@
     "enabled": true,
     "baseDir": "~/worktrees",
     "isolate_scratchpad": true
-  },
-  "tools": {
-    "browser": {
-      "enabled": false
-    },
-    "playwright": {
-      "enabled": false
-    },
-    "terminal": {
-      "maxOutputCharacters": 12000,
-      "truncationStrategy": "middle_ellipsis"
-    },
-    "file_system": {
-      "maxFindResults": 50,
-      "maxFileReadLines": 500
-    },
-    "ls": {
-      "enabled": true,
-      "maxOutputCharacters": 8000,
-      "truncationStrategy": "middle_ellipsis"
-    },
-    "find": {
-      "enabled": true,
-      "maxOutputCharacters": 10000,
-      "truncationStrategy": "middle_ellipsis"
-    },
-    "grep": {
-      "enabled": true,
-      "maxOutputCharacters": 12000,
-      "truncationStrategy": "middle_ellipsis"
-    }
   }
 }
