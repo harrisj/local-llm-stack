@@ -6,9 +6,26 @@
       "apiKey": "${INFERENCE_COOP_API_KEY}",
       "models": [
         {
+          "id": "greenpt/deepseek-v4.1-flash",
+          "capabilities": ["text", "vision"],
+          "context_window": 1000000,
+          "cost": {
+            "input": 0.22,
+            "output": 1.1,
+            "cacheRead": 0.011,
+            "cacheWrite": 1.1
+          }
+        },
+        {
           "id": "regolo/apertus-70b",
           "capabilities": ["code", "multilingual"],
           "context_window": 262288,
+          "cost": {
+            "input": 1.16,
+            "output": 3.94,
+            "cacheRead": 1.16,
+            "cacheWrite": 3.94
+          },
           "compat": {
             "developer_role": true,
             "reasoning_effort": false

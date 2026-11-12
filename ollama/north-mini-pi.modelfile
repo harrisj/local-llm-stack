@@ -1,0 +1,5 @@
+FROM north-mini-code-1.0
+
+# Set parameters for agent loops and context
+PARAMETER temperature 0.0
+PARAMETER num_ctx 65536

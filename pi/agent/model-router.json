@@ -1,23 +1,14 @@
 {
   "$schema": "https://githubusercontent.com",
   "debug": false,
-  "defaultProfile": "auto",
+  "defaultProfile": "local-only/rout",
   "maxContextTokens": 131072,
   "modes": {
-    "cost": {
-      "policy": {
-        "costSensitivity": 0.8,
-        "escalationHoldTurns": 1
-      }
-    },
+    "cost": { "policy": { "costSensitivity": 0.8, "escalationHoldTurns": 1 } },
     "quality": {
-      "policy": {
-        "costSensitivity": 0.2,
-        "escalationHoldTurns": 4
-      }
+      "policy": { "costSensitivity": 0.2, "escalationHoldTurns": 4 }
     }
   },
-
   "advisor": {
     "enabled": true,
     "model": "inference/metis",
@@ -35,12 +26,9 @@
     },
     "maxRetries": 1
   },
-
   "profiles": {
-    "auto": {
-      "advisor": {
-        "models": ["inference/metis"]
-      },
+    "fast-code": {
+      "advisor": { "models": ["inference/metis"] },
       "activityPreset": "auto",
       "activityRouting": {
         "code": "low",
@@ -62,9 +50,14 @@
         "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 4096 }
       },
       "medium": {
-        "model": "ollama/flint:latest",
+        "model": "ollama/north-mini-code:latest",
         "thinking": "medium",
-        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 4096 }
+        "options": {
+          "num_thread": 8,
+          "keep_alive": "-1",
+          "num_predict": 4096,
+          "num_ctx": 65536
+        }
       },
       "high": {
         "model": "inference_coop/regolo/apertus-70b",
@@ -73,10 +66,55 @@
         "options": { "think": true, "num_ctx": 262288 }
       }
     },
-    "local": {
+    "debug-agent": {
+      "advisor": { "models": ["inference/metis"] },
       "activityPreset": "auto",
       "activityRouting": {
-        "code": "low",
+        "code": "medium",
+        "debug": "high",
+        "explore": "low",
+        "plan": "high",
+        "review": "high",
+        "ops": "medium",
+        "docs": "micro"
+      },
+      "micro": {
+        "model": "ollama/north-mini-code:latest",
+        "thinking": "low",
+        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 256 }
+      },
+      "low": {
+        "model": "ollama/north-mini-code:latest",
+        "thinking": "low",
+        "options": {
+          "num_thread": 8,
+          "keep_alive": "-1",
+          "num_predict": 4096,
+          "num_ctx": 16384
+        }
+      },
+      "medium": {
+        "model": "ollama/ornith-1.5-35b:latest",
+        "thinking": "high",
+        "options": {
+          "num_thread": 8,
+          "keep_alive": "-1",
+          "num_predict": 4096,
+          "num_ctx": 65536
+        }
+      },
+      "high": {
+        "model": "ollama/ornith-1.5-35b:latest",
+        "contextWindow": 131072,
+        "thinking": "high",
+        "options": { "num_thread": 8, "keep_alive": "-1", "num_ctx": 131072 }
+      }
+    },
+    "heavy-context": {
+      "advisor": { "models": ["inference/metis"] },
+      "activityPreset": "auto",
+      "activityRouting": {
+        "code": "medium",
         "debug": "medium",
         "explore": "low",
         "plan": "high",
@@ -84,8 +122,49 @@
         "ops": "low",
         "docs": "micro"
       },
-      "advisor": {
-        "models": ["inference-coop/metis"]
+      "micro": {
+        "model": "ollama/granite-8b:latest",
+        "thinking": "low",
+        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 256 }
+      },
+      "low": {
+        "model": "ollama/north-mini-code:latest",
+        "thinking": "low",
+        "options": {
+          "num_thread": 8,
+          "keep_alive": "-1",
+          "num_predict": 4096,
+          "num_ctx": 65536
+        }
+      },
+      "medium": {
+        "model": "ollama/granite-30b-pi:latest",
+        "thinking": "low",
+        "options": {
+          "num_thread": 8,
+          "keep_alive": "-1",
+          "num_predict": 4096,
+          "num_ctx": 65536
+        }
+      },
+      "high": {
+        "model": "ollama/granite-30b-pi:latest",
+        "contextWindow": 131072,
+        "thinking": "high",
+        "options": { "num_thread": 8, "keep_alive": "-1", "num_ctx": 131072 }
+      }
+    },
+    "local-only": {
+      "advisor": { "models": ["ollama/granite-8b:latest"] },
+      "activityPreset": "auto",
+      "activityRouting": {
+        "code": "medium",
+        "debug": "medium",
+        "explore": "low",
+        "plan": "low",
+        "review": "medium",
+        "ops": "low",
+        "docs": "micro"
       },
       "micro": {
         "model": "ollama/flint:latest",
@@ -93,24 +172,33 @@
         "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 256 }
       },
       "low": {
-        "model": "ollama/flint:latest",
+        "model": "ollama/granite-8b:latest",
         "thinking": "low",
-        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 4096 }
+        "options": {
+          "num_thread": 8,
+          "keep_alive": "-1",
+          "num_predict": 4096,
+          "num_ctx": 16384
+        }
       },
       "medium": {
-        "model": "ollama/flint:latest",
+        "model": "ollama/north-mini-code:latest",
         "thinking": "medium",
-        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 4096 }
+        "options": {
+          "num_thread": 8,
+          "keep_alive": "-1",
+          "num_predict": 4096,
+          "num_ctx": 65536
+        }
       },
       "high": {
-        "model": "ollama/granite-30b-pi:latest",
-        "contextWindow": 131072,
+        "model": "ollama/north-mini-code:latest",
+        "contextWindow": 65536,
         "thinking": "high",
-        "options": { "num_ctx": 131072, "num_thread": 8, "keep_alive": "-1" }
+        "options": { "num_thread": 8, "keep_alive": "-1", "num_ctx": 65536 }
       }
     }
   },
-
   "heuristics": [
     {
       "matches": [
@@ -150,10 +238,13 @@
         "audit_goal",
         "goal_audit",
         "goal auditing",
-        "audit goal"
+        "audit goal",
+        "rearchitect",
+        "refactor",
+        "completely revise"
       ],
       "tier": "high",
-      "reason": "High-priority catastrophic runtime bugs and planning metrics evaluated BEFORE simple verbs."
+      "reason": "High-priority catastrophic runtime bugs evaluated BEFORE simple verbs."
     },
     {
       "matches": [
@@ -220,13 +311,22 @@
       "reason": "Standard performance profiling metrics."
     }
   ],
-
   "fallbacks": {
     "inference_coop/regolo/apertus-70b": [
+      "ollama/ornith-1.5-35b:latest",
       "ollama/granite-30b-pi:latest",
+      "ollama/north-mini-code:latest"
+    ],
+    "ollama/ornith-1.5-35b:latest": [
+      "ollama/granite-30b-pi:latest",
+      "ollama/north-mini-code:latest"
+    ],
+    "ollama/granite-30b-pi:latest": ["ollama/north-mini-code:latest"],
+    "ollama/north-mini-code:latest": [
+      "ollama/granite-8b:latest",
       "ollama/flint:latest"
     ],
-    "ollama/granite-30b-pi:latest": ["ollama/flint:latest"],
+    "ollama/granite-8b:latest": ["ollama/flint:latest"],
     "ollama/flint:latest": []
   }
 }

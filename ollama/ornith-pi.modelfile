@@ -1,0 +1,18 @@
+# Pull the exact 1.5 weights directly from HF to ensure native tool-calling is exposed
+FROM hf.co/ornith-ai/Ornith-1.5-35B-A3B-GGUF:Q4_K_M
+
+# Set the context size. 64k fits comfortably alongside Q4 weights on a 48GB Mac
+# Leaving plenty of overhead room for system operations.
+PARAMETER num_ctx 65536
+
+# Model sampling parameters optimized for deterministic agentic reasoning and coding
+PARAMETER temperature 0.6
+PARAMETER top_p 0.95
+PARAMETER top_k 20
+
+# Stop tokens to prevent the model from hallucinating loops during multi-turn actions
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|im_start|>"
+
+# System Prompt targeting the self-improving scaffold architecture
+SYSTEM """You are Ornith, an open-source agentic coding assistant. Think step-by-step inside your <think></think> tags before executing tasks, interacting with tools, or rendering code block solutions."""

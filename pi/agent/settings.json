@@ -1,8 +1,8 @@
 {
-  "defaultModel": "auto",
+  "defaultModel": "fast-code",
   "defaultProvider": "router",
   "thinking_effort": "low",
-  "lastChangelogVersion": "1.5.0",
+  "lastChangelogVersion": "1.5.2",
   "httpIdleTimeoutMs": 0,
   "packages": [
     "npm:pi-plan",
@@ -17,7 +17,6 @@
     "npm:model-debugger",
     "npm:pi-loop-police",
     "npm:pi-tool-repair",
-    "npm:pi-rtk-optimizer",
     "npm:pi-tidy",
     "npm:pi-vcc",
     "npm:@spences10/pi-sqlite-tools",
@@ -28,11 +27,11 @@
     "npm:@alexeiled/pi-provider-compat",
     "npm:pi-tool-discipline",
     "npm:@ff-labs/pi-fff",
-    "npm:context-mode",
     "git:github.com/therynamo/pi-changed-files",
     "npm:@demigodmode/pi-web-agent",
     "npm:pi-list-tools",
-    "npm:pi-playwright"
+    "npm:pi-playwright",
+    "npm:@sfroment/pi-obsidian"
   ],
   "theme": "dark",
   "compaction": {
@@ -66,9 +65,14 @@
     "ollama/pi-classifier:latest",
     "ollama/starcoder2:15b",
     "ollama/flint:latest",
-    "router/auto",
     "inference_coop/regolo/apertus-70b",
-    "router/local"
+    "router/local-only",
+    "inference_coop/greenpt/deepseek-v4.1-flash",
+    "ollama/ornith-pi:latest",
+    "ollama/north-mini-pi:latest",
+    "router/debug-agent",
+    "router/fast-code",
+    "router/heavy-context"
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"npm:@jamesjfoong/pi-ollama\",\"scope\":\"user\"}": "1.0.3",
@@ -79,9 +83,18 @@
     "{\"source\":\"npm:pi-vcc\",\"scope\":\"user\"}": "0.4.1",
     "{\"source\":\"npm:@spences10/pi-sqlite-tools\",\"scope\":\"user\"}": "0.0.15",
     "{\"source\":\"npm:pi-powerline\",\"scope\":\"user\"}": "0.11.2",
-    "{\"source\":\"npm:@alexeiled/pi-model-router\",\"scope\":\"user\"}": "0.19.0",
-    "{\"source\":\"npm:pi-tidy\",\"scope\":\"user\"}": "0.9.1",
-    "{\"source\":\"npm:pi-context-view\",\"scope\":\"user\"}": "0.8.3",
-    "{\"source\":\"npm:@demigodmode/pi-web-agent\",\"scope\":\"user\"}": "1.16.0"
+    "{\"source\":\"npm:@alexeiled/pi-model-router\",\"scope\":\"user\"}": "0.20.0",
+    "{\"source\":\"npm:pi-tidy\",\"scope\":\"user\"}": "0.9.5",
+    "{\"source\":\"npm:pi-context-view\",\"scope\":\"user\"}": "0.8.4",
+    "{\"source\":\"npm:@demigodmode/pi-web-agent\",\"scope\":\"user\"}": "1.17.0",
+    "{\"source\":\"npm:@sfroment/pi-obsidian\",\"scope\":\"user\"}": "1.0.20"
+  },
+  "tidy": {
+    "groupOpen": true,
+    "alwaysShowTools": [
+      "edit",
+      "write",
+      "codemode"
+    ]
   }
 }
