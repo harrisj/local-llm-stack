@@ -31,7 +31,8 @@
     "npm:@demigodmode/pi-web-agent",
     "npm:pi-list-tools",
     "npm:pi-playwright",
-    "npm:@sfroment/pi-obsidian"
+    "npm:@sfroment/pi-obsidian",
+    "npm:pi-project-memory"
   ],
   "theme": "dark",
   "compaction": {

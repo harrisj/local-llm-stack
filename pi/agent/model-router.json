@@ -50,12 +50,11 @@
         "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 4096 }
       },
       "medium": {
-        "model": "ollama/north-mini-code:latest",
+        "model": "ollama/north-mini-pi:latest",
         "thinking": "medium",
         "options": {
           "num_thread": 8,
           "keep_alive": "-1",
-          "num_predict": 4096,
           "num_ctx": 65536
         }
       },
@@ -79,22 +78,21 @@
         "docs": "micro"
       },
       "micro": {
-        "model": "ollama/north-mini-code:latest",
+        "model": "ollama/north-mini-pi:latest",
         "thinking": "low",
         "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 256 }
       },
       "low": {
-        "model": "ollama/north-mini-code:latest",
+        "model": "ollama/north-mini-pi:latest",
         "thinking": "low",
         "options": {
           "num_thread": 8,
           "keep_alive": "-1",
-          "num_predict": 4096,
           "num_ctx": 16384
         }
       },
       "medium": {
-        "model": "ollama/ornith-1.5-35b:latest",
+        "model": "ollama/ornith-pi:latest",
         "thinking": "high",
         "options": {
           "num_thread": 8,
@@ -104,7 +102,7 @@
         }
       },
       "high": {
-        "model": "ollama/ornith-1.5-35b:latest",
+        "model": "ollama/ornith-pi:latest",
         "contextWindow": 131072,
         "thinking": "high",
         "options": { "num_thread": 8, "keep_alive": "-1", "num_ctx": 131072 }
@@ -128,12 +126,11 @@
         "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 256 }
       },
       "low": {
-        "model": "ollama/north-mini-code:latest",
+        "model": "ollama/north-mini-pi:latest",
         "thinking": "low",
         "options": {
           "num_thread": 8,
           "keep_alive": "-1",
-          "num_predict": 4096,
           "num_ctx": 65536
         }
       },
@@ -143,7 +140,6 @@
         "options": {
           "num_thread": 8,
           "keep_alive": "-1",
-          "num_predict": 4096,
           "num_ctx": 65536
         }
       },
@@ -182,7 +178,7 @@
         }
       },
       "medium": {
-        "model": "ollama/north-mini-code:latest",
+        "model": "ollama/north-mini-pi:latest",
         "thinking": "medium",
         "options": {
           "num_thread": 8,
@@ -192,7 +188,7 @@
         }
       },
       "high": {
-        "model": "ollama/north-mini-code:latest",
+        "model": "ollama/north-mini-pi:latest",
         "contextWindow": 65536,
         "thinking": "high",
         "options": { "num_thread": 8, "keep_alive": "-1", "num_ctx": 65536 }
@@ -313,16 +309,16 @@
   ],
   "fallbacks": {
     "inference_coop/regolo/apertus-70b": [
-      "ollama/ornith-1.5-35b:latest",
+      "ollama/ornith-pi:latest",
       "ollama/granite-30b-pi:latest",
-      "ollama/north-mini-code:latest"
+      "ollama/north-mini-pi:latest"
     ],
-    "ollama/ornith-1.5-35b:latest": [
+    "ollama/ornith-pi:latest": [
       "ollama/granite-30b-pi:latest",
-      "ollama/north-mini-code:latest"
+      "ollama/north-mini-pi:latest"
     ],
-    "ollama/granite-30b-pi:latest": ["ollama/north-mini-code:latest"],
-    "ollama/north-mini-code:latest": [
+    "ollama/granite-30b-pi:latest": ["ollama/north-mini-pi:latest"],
+    "ollama/north-mini-pi:latest": [
       "ollama/granite-8b:latest",
       "ollama/flint:latest"
     ],
