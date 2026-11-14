@@ -1,8 +1,6 @@
 {
-  "$schema": "https://githubusercontent.com",
   "debug": false,
-  "defaultProfile": "local-only/rout",
-  "maxContextTokens": 131072,
+  "defaultProfile": "local",
   "modes": {
     "cost": { "policy": { "costSensitivity": 0.8, "escalationHoldTurns": 1 } },
     "quality": {
@@ -41,13 +39,13 @@
       },
       "micro": {
         "model": "ollama/flint:latest",
-        "thinking": "low",
-        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 256 }
+        "thinking": "off",
+        "options": { "num_thread": 8, "keep_alive": "-1" }
       },
       "low": {
         "model": "ollama/flint:latest",
         "thinking": "low",
-        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 4096 }
+        "options": { "num_thread": 8, "keep_alive": "-1" }
       },
       "medium": {
         "model": "ollama/north-mini-pi:latest",
@@ -79,33 +77,29 @@
       },
       "micro": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "low",
-        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 256 }
+        "thinking": "off",
+        "options": { "num_thread": 8, "keep_alive": "-1" }
       },
       "low": {
         "model": "ollama/north-mini-pi:latest",
         "thinking": "low",
         "options": {
           "num_thread": 8,
-          "keep_alive": "-1",
-          "num_ctx": 16384
+          "keep_alive": "-1"
         }
       },
       "medium": {
         "model": "ollama/ornith-pi:latest",
-        "thinking": "high",
+        "thinking": "medium",
         "options": {
           "num_thread": 8,
-          "keep_alive": "-1",
-          "num_predict": 4096,
-          "num_ctx": 65536
+          "keep_alive": "-1"
         }
       },
       "high": {
         "model": "ollama/ornith-pi:latest",
-        "contextWindow": 131072,
         "thinking": "high",
-        "options": { "num_thread": 8, "keep_alive": "-1", "num_ctx": 131072 }
+        "options": { "num_thread": 8, "keep_alive": "-1" }
       }
     },
     "heavy-context": {
@@ -123,15 +117,14 @@
       "micro": {
         "model": "ollama/granite-8b:latest",
         "thinking": "low",
-        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 256 }
+        "options": { "num_thread": 8, "keep_alive": "-1" }
       },
       "low": {
         "model": "ollama/north-mini-pi:latest",
         "thinking": "low",
         "options": {
           "num_thread": 8,
-          "keep_alive": "-1",
-          "num_ctx": 65536
+          "keep_alive": "-1"
         }
       },
       "medium": {
@@ -139,83 +132,77 @@
         "thinking": "low",
         "options": {
           "num_thread": 8,
-          "keep_alive": "-1",
-          "num_ctx": 65536
+          "keep_alive": "-1"
         }
       },
       "high": {
         "model": "ollama/granite-30b-pi:latest",
         "contextWindow": 131072,
         "thinking": "high",
-        "options": { "num_thread": 8, "keep_alive": "-1", "num_ctx": 131072 }
+        "options": { "num_thread": 8, "keep_alive": "-1" }
       }
     },
-    "local-only": {
-      "advisor": { "models": ["ollama/granite-8b:latest"] },
+    "local": {
+      "advisor": { "models": ["inference/metis"] },
       "activityPreset": "auto",
       "activityRouting": {
         "code": "medium",
         "debug": "medium",
         "explore": "low",
-        "plan": "low",
+        "plan": "high",
         "review": "medium",
         "ops": "low",
         "docs": "micro"
-      },
-      "micro": {
-        "model": "ollama/flint:latest",
-        "thinking": "low",
-        "options": { "num_thread": 8, "keep_alive": "-1", "num_predict": 256 }
       },
       "low": {
         "model": "ollama/granite-8b:latest",
         "thinking": "low",
         "options": {
           "num_thread": 8,
-          "keep_alive": "-1",
-          "num_predict": 4096,
-          "num_ctx": 16384
+          "keep_alive": "-1"
         }
+      },
+      "micro": {
+        "model": "ollama/flint:latest",
+        "thinking": "low",
+        "options": { "num_thread": 8, "keep_alive": "-1" }
       },
       "medium": {
         "model": "ollama/north-mini-pi:latest",
         "thinking": "medium",
         "options": {
           "num_thread": 8,
-          "keep_alive": "-1",
-          "num_predict": 4096,
-          "num_ctx": 65536
+          "keep_alive": "-1"
         }
       },
       "high": {
         "model": "ollama/north-mini-pi:latest",
-        "contextWindow": 65536,
         "thinking": "high",
-        "options": { "num_thread": 8, "keep_alive": "-1", "num_ctx": 65536 }
+        "options": { "num_thread": 8, "keep_alive": "-1" }
       }
     }
   },
   "heuristics": [
     {
       "matches": [
-        "^(!high|/high|--high|force-high|force-critical)$",
+        "(!high|/high|--high|force-high|force-critical)",
         "architecture-plan"
       ],
       "tier": "high",
       "reason": "Explicit manual overrides to force heavy reasoning tier."
     },
     {
-      "matches": ["^(!medium|/medium|--medium|force-medium)$", "architect"],
+      "matches": ["(!medium|/medium|--medium|force-medium)", "architect"],
       "tier": "medium",
       "reason": "Explicit manual overrides for mid-tier reasoning workflows."
     },
     {
-      "matches": ["^(!low|/low|--low|force-low)$"],
+      "matches": ["(!low|/low|--low|force-low)"],
       "tier": "low",
       "reason": "Manual override flag forcing standard implementation tier."
     },
     {
-      "matches": ["^(!micro|/micro|--micro|force-micro)$"],
+      "matches": ["(!micro|/micro|--micro|force-micro)"],
       "tier": "micro",
       "reason": "Manual override flag forcing lightweight environment tier."
     },
@@ -241,53 +228,6 @@
       ],
       "tier": "high",
       "reason": "High-priority catastrophic runtime bugs evaluated BEFORE simple verbs."
-    },
-    {
-      "matches": [
-        "print",
-        "echo",
-        "format",
-        "lint",
-        "prettier",
-        "eslint",
-        "ruff",
-        "black",
-        "pip",
-        "npm",
-        "install",
-        "bump",
-        "version",
-        "typo",
-        "fix typo",
-        "comment",
-        "comments",
-        "docs",
-        "docstring",
-        "rubocop",
-        "flake8",
-        "autopep8",
-        "run tests",
-        "pytest",
-        "unittest",
-        "readme",
-        "changelog",
-        "yaml",
-        "toml",
-        "json",
-        "ini",
-        "cfg",
-        "conf",
-        "setup.cfg",
-        "manage.py",
-        "run make",
-        "rake",
-        "test",
-        "ping",
-        "clear session",
-        "reset context"
-      ],
-      "tier": "micro",
-      "reason": "Environment hygiene and syntax checks evaluated before broader action verbs."
     },
     {
       "matches": [
