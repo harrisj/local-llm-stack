@@ -40,20 +40,18 @@
       "micro": {
         "model": "ollama/flint:latest",
         "thinking": "off",
-        "options": { "num_thread": 8, "keep_alive": "-1" }
+        "options": { "num_thread": 8 }
       },
       "low": {
         "model": "ollama/flint:latest",
         "thinking": "low",
-        "options": { "num_thread": 8, "keep_alive": "-1" }
+        "options": { "num_thread": 8 }
       },
       "medium": {
         "model": "ollama/north-mini-pi:latest",
         "thinking": "medium",
         "options": {
-          "num_thread": 8,
-          "keep_alive": "-1",
-          "num_ctx": 65536
+          "num_thread": 8
         }
       },
       "high": {
@@ -78,28 +76,26 @@
       "micro": {
         "model": "ollama/north-mini-pi:latest",
         "thinking": "off",
-        "options": { "num_thread": 8, "keep_alive": "-1" }
+        "options": { "num_thread": 8 }
       },
       "low": {
         "model": "ollama/north-mini-pi:latest",
         "thinking": "low",
         "options": {
-          "num_thread": 8,
-          "keep_alive": "-1"
+          "num_thread": 8
         }
       },
       "medium": {
         "model": "ollama/ornith-pi:latest",
         "thinking": "medium",
         "options": {
-          "num_thread": 8,
-          "keep_alive": "-1"
+          "num_thread": 8
         }
       },
       "high": {
         "model": "ollama/ornith-pi:latest",
         "thinking": "high",
-        "options": { "num_thread": 8, "keep_alive": "-1" }
+        "options": { "num_thread": 8 }
       }
     },
     "heavy-context": {
@@ -117,29 +113,27 @@
       "micro": {
         "model": "ollama/granite-8b-pi:latest",
         "thinking": "off",
-        "options": { "num_thread": 8, "keep_alive": "-1" }
+        "options": { "num_thread": 8 }
       },
       "low": {
         "model": "ollama/north-mini-pi:latest",
         "thinking": "low",
         "options": {
-          "num_thread": 8,
-          "keep_alive": "-1"
+          "num_thread": 8
         }
       },
       "medium": {
         "model": "ollama/granite-30b-pi:latest",
         "thinking": "low",
         "options": {
-          "num_thread": 8,
-          "keep_alive": "-1"
+          "num_thread": 8
         }
       },
       "high": {
         "model": "ollama/granite-30b-pi:latest",
         "contextWindow": 131072,
         "thinking": "high",
-        "options": { "num_thread": 8, "keep_alive": "-1" }
+        "options": { "num_thread": 8 }
       }
     },
     "local": {
@@ -156,29 +150,27 @@
       },
       "micro": {
         "model": "ollama/granite-8b-pi:lates",
-        "/reloathinking": "off",
-        "options": { "num_thread": 8, "keep_alive": "-1" }
+        "thinking": "off",
+        "options": { "num_thread": 8 }
       },
       "low": {
         "model": "ollama/granite-8b-pi:latest",
         "thinking": "low",
         "options": {
-          "num_thread": 8,
-          "keep_alive": "-1"
+          "num_thread": 8
         }
       },
       "medium": {
         "model": "ollama/north-mini-pi:latest",
         "thinking": "medium",
         "options": {
-          "num_thread": 8,
-          "keep_alive": "-1"
+          "num_thread": 8
         }
       },
       "high": {
         "model": "ollama/north-mini-pi:latest",
         "thinking": "high",
-        "options": { "num_thread": 8, "keep_alive": "-1" }
+        "options": { "num_thread": 8 }
       }
     }
   },

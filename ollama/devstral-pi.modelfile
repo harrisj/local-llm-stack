@@ -1,8 +1,7 @@
 FROM devstral-small-2:24b
 
 # 1. Hardware-Optimized Inference Parameters
-PARAMETER num_ctx 65536
-PARAMETER num_predict 4096
+PARAMETER num_ctx 131072
 PARAMETER num_thread 8
 
 # 2. Keep the hyper-deterministic parameters for agent actions

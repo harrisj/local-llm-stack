@@ -14,19 +14,10 @@
   },
   "modelOverrides": {
     "granite-8b-pi:latest": {
-      "contextWindow": 65536,
-      "reasoning": false
-    },
-    "devstral-pi-reasoning:latest": {
-      "reasoning": true,
-      "contextWindow": 32768,
-      "maxTokens": 8192,
-      "compat": {
-        "thinkingFormat": "deepseek"
-      }
+      "contextWindow": 131072
     },
     "mistral-pi:latest": {
-      "contextWindow": 65536,
+      "contextWindow": 131072,
       "reasoning": false,
       "maxTokens": 4096,
       "compat": {
@@ -38,7 +29,6 @@
     },
     "granite-30b-pi:latest": {
       "contextWindow": 131072,
-      "maxTokens": 8192,
       "reasoning": true,
       "compat": {
         "thinkingFormat": "openai"
@@ -50,15 +40,14 @@
     "olmo-7b-pi:latest": {
       "contextWindow": 65536
     },
-    "flint:latest": {
+    "flint-pi:latest": {
       "contextWindow": 131072
     },
     "ornith-pi:latest": {
-      "contextWindow": 65536,
-      "maxTokens": 4096
+      "contextWindow": 131072
     },
     "north-mini-pi:latest": {
-      "contextWindow": 65536
+      "contextWindow": 131072
     }
   },
   "version": 1

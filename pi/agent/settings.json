@@ -83,8 +83,8 @@
     "{\"source\":\"npm:pi-vcc\",\"scope\":\"user\"}": "0.4.1",
     "{\"source\":\"npm:@spences10/pi-sqlite-tools\",\"scope\":\"user\"}": "0.0.15",
     "{\"source\":\"npm:pi-powerline\",\"scope\":\"user\"}": "0.11.2",
-    "{\"source\":\"npm:@alexeiled/pi-model-router\",\"scope\":\"user\"}": "0.20.1",
-    "{\"source\":\"npm:pi-tidy\",\"scope\":\"user\"}": "0.9.7",
+    "{\"source\":\"npm:@alexeiled/pi-model-router\",\"scope\":\"user\"}": "0.21.0",
+    "{\"source\":\"npm:pi-tidy\",\"scope\":\"user\"}": "0.9.8",
     "{\"source\":\"npm:pi-context-view\",\"scope\":\"user\"}": "0.8.4",
     "{\"source\":\"npm:@demigodmode/pi-web-agent\",\"scope\":\"user\"}": "1.17.0",
     "{\"source\":\"npm:@sfroment/pi-obsidian\",\"scope\":\"user\"}": "1.0.20"

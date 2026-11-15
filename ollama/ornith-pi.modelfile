@@ -3,7 +3,7 @@ FROM hf.co/ornith-ai/Ornith-1.5-35B-A3B-GGUF:Q4_K_M
 
 # Set the context size. 64k fits comfortably alongside Q4 weights on a 48GB Mac
 # Leaving plenty of overhead room for system operations.
-PARAMETER num_ctx 65536
+PARAMETER num_ctx 131072
 
 # Model sampling parameters optimized for deterministic agentic reasoning and coding
 PARAMETER temperature 0.6
