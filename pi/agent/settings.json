@@ -26,7 +26,6 @@
     "npm:@alexeiled/pi-model-router",
     "npm:@alexeiled/pi-provider-compat",
     "npm:pi-tool-discipline",
-    "npm:@ff-labs/pi-fff",
     "git:github.com/therynamo/pi-changed-files",
     "npm:@demigodmode/pi-web-agent",
     "npm:pi-list-tools",

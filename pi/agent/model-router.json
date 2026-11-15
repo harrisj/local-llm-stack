@@ -115,8 +115,8 @@
         "docs": "micro"
       },
       "micro": {
-        "model": "ollama/granite-8b:latest",
-        "thinking": "low",
+        "model": "ollama/granite-8b-pi:latest",
+        "thinking": "off",
         "options": { "num_thread": 8, "keep_alive": "-1" }
       },
       "low": {
@@ -154,18 +154,18 @@
         "ops": "low",
         "docs": "micro"
       },
+      "micro": {
+        "model": "ollama/granite-8b-pi:lates",
+        "/reloathinking": "off",
+        "options": { "num_thread": 8, "keep_alive": "-1" }
+      },
       "low": {
-        "model": "ollama/granite-8b:latest",
+        "model": "ollama/granite-8b-pi:latest",
         "thinking": "low",
         "options": {
           "num_thread": 8,
           "keep_alive": "-1"
         }
-      },
-      "micro": {
-        "model": "ollama/flint:latest",
-        "thinking": "low",
-        "options": { "num_thread": 8, "keep_alive": "-1" }
       },
       "medium": {
         "model": "ollama/north-mini-pi:latest",
@@ -259,10 +259,10 @@
     ],
     "ollama/granite-30b-pi:latest": ["ollama/north-mini-pi:latest"],
     "ollama/north-mini-pi:latest": [
-      "ollama/granite-8b:latest",
+      "ollama/granite-8b-pi:latest",
       "ollama/flint:latest"
     ],
-    "ollama/granite-8b:latest": ["ollama/flint:latest"],
+    "ollama/granite-8b-pi:latest": ["ollama/flint:latest"],
     "ollama/flint:latest": []
   }
 }

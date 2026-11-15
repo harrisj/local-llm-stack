@@ -25,16 +25,6 @@
         "thinkingFormat": "deepseek"
       }
     },
-    "devstral-pi:latest": {
-      "contextWindow": 65536,
-      "reasoning": false,
-      "maxTokens": 4096
-    },
-    "olmo-7b-pi:latest": {
-      "contextWindow": 65536,
-      "mode": "only",
-      "inlineBudget": 4000
-    },
     "mistral-pi:latest": {
       "contextWindow": 65536,
       "reasoning": false,
@@ -56,6 +46,19 @@
     },
     "starcoder2:15b": {
       "contextWindow": 32768
+    },
+    "olmo-7b-pi:latest": {
+      "contextWindow": 65536
+    },
+    "flint:latest": {
+      "contextWindow": 131072
+    },
+    "ornith-pi:latest": {
+      "contextWindow": 65536,
+      "maxTokens": 4096
+    },
+    "north-mini-pi:latest": {
+      "contextWindow": 65536
     }
   },
   "version": 1
