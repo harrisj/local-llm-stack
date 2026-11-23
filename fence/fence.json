@@ -41,7 +41,9 @@
       "/Users/harrisj/code/personal/local-llm-stack/pi",
       "/Users/harrisj/package.json",
       "/Users/harrisj/Library/Application Support/obsidian",
-      "/Users/harrisj/Work/Obsidian"
+      "/Users/harrisj/Work/Obsidian",
+      "/Users/harrisj/Library/Caches/typescript",
+      "/Users/harrisj/node_modules"
     ],
     "allowWrite": [
       ".",
@@ -78,6 +80,8 @@
       "mcp.exa.ai",
       "api.firecrawl.dev",
       "startpage.com",
+      "html.duckduckgo.com",
+      "api.tavily.com",
       "duckduckgo.com",
       "ecosia.org",
       "*.github.io",
@@ -89,7 +93,8 @@
       "mcp.context7.com",
       "gateway.inference.coop",
       "index.rubygems.org",
-      "registry.npmjs.org"
+      "registry.npmjs.org",
+      "unpkg.com"
     ],
     "allowLocalBinding": true,
     "allowLocalOutbound": true,
