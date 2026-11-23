@@ -4,7 +4,7 @@
   "modes": {
     "cost": { "policy": { "costSensitivity": 0.8, "escalationHoldTurns": 1 } },
     "quality": {
-      "policy": { "costSensitivity": 0.2, "escalationHoldTurns": 4 }
+      "policy": { "costSensitivity": 0.2, "escalationHoldTurns": 2 }
     }
   },
   "advisor": {
@@ -39,15 +39,18 @@
       },
       "micro": {
         "model": "ollama/flint-pi:latest",
-        "thinking": "off"
+        "thinking": "off",
+        "options": { "num_ctx": 32768 }
       },
       "low": {
         "model": "ollama/flint-pi:latest",
-        "thinking": "low"
+        "thinking": "low",
+        "options": { "num_ctx": 32768 }
       },
       "medium": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "medium"
+        "thinking": "medium",
+        "options": { "num_ctx": 65536 }
       },
       "high": {
         "model": "inference_coop/regolo/apertus-70b",
@@ -70,19 +73,23 @@
       },
       "micro": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "off"
+        "thinking": "off",
+        "options": { "num_ctx": 32768 }
       },
       "low": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "low"
+        "thinking": "low",
+        "options": { "num_ctx": 32768 }
       },
       "medium": {
         "model": "ollama/inkling-pi:latest",
-        "thinking": "medium"
+        "thinking": "medium",
+        "options": { "num_ctx": 24576 }
       },
       "high": {
         "model": "ollama/inkling-pi:latest",
-        "thinking": "high"
+        "thinking": "high",
+        "options": { "num_ctx": 24576 }
       }
     },
     "heavy-context": {
@@ -99,19 +106,23 @@
       },
       "micro": {
         "model": "ollama/granite-8b-pi:latest",
-        "thinking": "off"
+        "thinking": "off",
+        "options": { "num_ctx": 65536 }
       },
       "low": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "low"
+        "thinking": "low",
+        "options": { "num_ctx": 98304 }
       },
       "medium": {
-        "model": "ollama/inkling-pi:latest",
-        "thinking": "low"
+        "model": "ollama/ornith-pi:latest",
+        "thinking": "low",
+        "options": { "num_ctx": 98304 }
       },
       "high": {
-        "model": "ollama/inkling-pi:latest",
-        "thinking": "high"
+        "model": "ollama/ornith-pi:latest",
+        "thinking": "high",
+        "options": { "num_ctx": 98304 }
       }
     },
     "local": {
@@ -128,19 +139,23 @@
       },
       "micro": {
         "model": "ollama/granite-8b-pi:latest",
-        "thinking": "off"
+        "thinking": "off",
+        "options": { "num_ctx": 32768 }
       },
       "low": {
-        "model": "ollama/granite-8b-pi:latest",
-        "thinking": "low"
+        "model": "ollama/north-mini-pi:latest",
+        "thinking": "low",
+        "options": { "num_ctx": 65536 }
       },
       "medium": {
-        "model": "ollama/north-mini-pi:latest",
-        "thinking": "medium"
+        "model": "ollama/ornith-pi:latest",
+        "thinking": "medium",
+        "options": { "num_ctx": 65536 }
       },
       "high": {
         "model": "ollama/inkling-pi:latest",
-        "thinking": "high"
+        "thinking": "high",
+        "options": { "num_ctx": 24576 }
       }
     }
   },
@@ -154,9 +169,14 @@
       "reason": "Explicit manual overrides to force heavy reasoning tier."
     },
     {
-      "matches": ["(!medium|/medium|--medium|force-medium)", "architect"],
+      "matches": [
+        "(!medium|/medium|--medium|force-medium)",
+        "architect",
+        "refactor",
+        "transaction"
+      ],
       "tier": "medium",
-      "reason": "Explicit manual overrides for mid-tier reasoning workflows."
+      "reason": "Mid-tier reasoning and refactoring workflows routed to ornith-pi."
     },
     {
       "matches": ["(!low|/low|--low|force-low)"],
@@ -175,7 +195,6 @@
         "memory leak",
         "mutex",
         "semaphore",
-        "transaction",
         "crash dump",
         "propose_goal_draft",
         "update_goal",
@@ -185,7 +204,6 @@
         "goal auditing",
         "audit goal",
         "rearchitect",
-        "refactor",
         "completely revise"
       ],
       "tier": "high",
@@ -211,8 +229,8 @@
   ],
   "fallbacks": {
     "inference_coop/regolo/apertus-70b": [
-      "ollama/inkling-pi:latest",
       "ollama/ornith-pi:latest",
+      "ollama/inkling-pi:latest",
       "ollama/granite-30b-pi:latest",
       "ollama/north-mini-pi:latest"
     ],
@@ -228,9 +246,9 @@
     "ollama/granite-30b-pi:latest": ["ollama/north-mini-pi:latest"],
     "ollama/north-mini-pi:latest": [
       "ollama/granite-8b-pi:latest",
-      "ollama/flint:latest"
+      "ollama/flint-pi:latest"
     ],
-    "ollama/granite-8b-pi:latest": ["ollama/flint:latest"],
-    "ollama/flint:latest": []
+    "ollama/granite-8b-pi:latest": ["ollama/flint-pi:latest"],
+    "ollama/flint-pi:latest": []
   }
 }
