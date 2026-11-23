@@ -39,24 +39,19 @@
       },
       "micro": {
         "model": "ollama/flint-pi:latest",
-        "thinking": "off",
-        "options": { "num_ctx": 32768 }
+        "thinking": "off"
       },
       "low": {
         "model": "ollama/flint-pi:latest",
-        "thinking": "low",
-        "options": { "num_ctx": 32768 }
+        "thinking": "low"
       },
       "medium": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "medium",
-        "options": { "num_ctx": 65536 }
+        "thinking": "medium"
       },
       "high": {
-        "model": "inference_coop/regolo/apertus-70b",
-        "contextWindow": 262288,
-        "thinking": "high",
-        "options": { "think": true, "num_ctx": 262288 }
+        "model": "ollama/north-mini-pi:latest",
+        "thinking": "high"
       }
     },
     "debug-agent": {
@@ -73,23 +68,19 @@
       },
       "micro": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "off",
-        "options": { "num_ctx": 32768 }
+        "thinking": "off"
       },
       "low": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "low",
-        "options": { "num_ctx": 32768 }
+        "thinking": "medium"
       },
       "medium": {
         "model": "ollama/inkling-pi:latest",
-        "thinking": "medium",
-        "options": { "num_ctx": 24576 }
+        "thinking": "medium"
       },
       "high": {
         "model": "ollama/inkling-pi:latest",
-        "thinking": "high",
-        "options": { "num_ctx": 24576 }
+        "thinking": "high"
       }
     },
     "heavy-context": {
@@ -106,23 +97,21 @@
       },
       "micro": {
         "model": "ollama/granite-8b-pi:latest",
-        "thinking": "off",
-        "options": { "num_ctx": 65536 }
+        "thinking": "off"
       },
       "low": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "low",
-        "options": { "num_ctx": 98304 }
+        "thinking": "medium"
       },
       "medium": {
         "model": "ollama/ornith-pi:latest",
-        "thinking": "low",
-        "options": { "num_ctx": 98304 }
+        "thinking": "medium"
       },
       "high": {
-        "model": "ollama/ornith-pi:latest",
+        "model": "inference_coop/regolo/apertus-70b",
+        "contextWindow": 262288,
         "thinking": "high",
-        "options": { "num_ctx": 98304 }
+        "options": { "think": true, "num_ctx": 262288 }
       }
     },
     "local": {
@@ -139,23 +128,19 @@
       },
       "micro": {
         "model": "ollama/granite-8b-pi:latest",
-        "thinking": "off",
-        "options": { "num_ctx": 32768 }
+        "thinking": "off"
       },
       "low": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "low",
-        "options": { "num_ctx": 65536 }
+        "thinking": "low"
       },
       "medium": {
         "model": "ollama/ornith-pi:latest",
-        "thinking": "medium",
-        "options": { "num_ctx": 65536 }
+        "thinking": "medium"
       },
       "high": {
         "model": "ollama/inkling-pi:latest",
-        "thinking": "high",
-        "options": { "num_ctx": 24576 }
+        "thinking": "high"
       }
     }
   },

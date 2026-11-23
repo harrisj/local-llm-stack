@@ -9,7 +9,6 @@
     "npm:pi-show",
     "npm:pi-context-view",
     "npm:pi-tool-missing-guard",
-    "npm:@nicknisi/pi-ast-grep",
     "npm:@henryqw/pi-ask-question",
     "npm:@jamesjfoong/pi-ollama",
     "npm:pi-mcp-adapter",

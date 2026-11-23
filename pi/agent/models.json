@@ -19,7 +19,7 @@
         {
           "id": "regolo/apertus-70b",
           "capabilities": ["code", "multilingual"],
-          "context_window": 262288,
+          "contextWindow": 262288,
           "cost": {
             "input": 1.16,
             "output": 3.94,
@@ -39,10 +39,12 @@
       "baseUrl": "http://127.0.0.1:11434/v1",
       "maxConcurrency": 2,
       "models": [
-        { "id": "pi-classifier:latest" },
-        { "id": "granite-8b-pi:latest" },
+        { "id": "granite-8b-pi:latest", "contextWindow": 65536 },
         { "id": "granite-30b-pi:latest" },
-        { "id": "flint:latest" }
+        { "id": "north-mini-pi", "contextWindow": 131072 },
+        { "id": "flint-pi:latest", "contextWindow": 65536 },
+        { "id": "ornith-pi:latest", "contextWindow": 131072 },
+        { "id": "inkling-pi:latest", "contextWindow": 65536 }
       ]
     }
   }
