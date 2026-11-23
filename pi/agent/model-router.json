@@ -77,11 +77,11 @@
         "thinking": "low"
       },
       "medium": {
-        "model": "ollama/ornith-pi:latest",
+        "model": "ollama/inkling-pi:latest",
         "thinking": "medium"
       },
       "high": {
-        "model": "ollama/ornith-pi:latest",
+        "model": "ollama/inkling-pi:latest",
         "thinking": "high"
       }
     },
