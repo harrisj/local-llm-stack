@@ -38,21 +38,16 @@
         "docs": "micro"
       },
       "micro": {
-        "model": "ollama/flint:latest",
-        "thinking": "off",
-        "options": { "num_thread": 8 }
+        "model": "ollama/flint-pi:latest",
+        "thinking": "off"
       },
       "low": {
-        "model": "ollama/flint:latest",
-        "thinking": "low",
-        "options": { "num_thread": 8 }
+        "model": "ollama/flint-pi:latest",
+        "thinking": "low"
       },
       "medium": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "medium",
-        "options": {
-          "num_thread": 8
-        }
+        "thinking": "medium"
       },
       "high": {
         "model": "inference_coop/regolo/apertus-70b",
@@ -75,27 +70,19 @@
       },
       "micro": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "off",
-        "options": { "num_thread": 8 }
+        "thinking": "off"
       },
       "low": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "low",
-        "options": {
-          "num_thread": 8
-        }
+        "thinking": "low"
       },
       "medium": {
         "model": "ollama/ornith-pi:latest",
-        "thinking": "medium",
-        "options": {
-          "num_thread": 8
-        }
+        "thinking": "medium"
       },
       "high": {
         "model": "ollama/ornith-pi:latest",
-        "thinking": "high",
-        "options": { "num_thread": 8 }
+        "thinking": "high"
       }
     },
     "heavy-context": {
@@ -112,28 +99,19 @@
       },
       "micro": {
         "model": "ollama/granite-8b-pi:latest",
-        "thinking": "off",
-        "options": { "num_thread": 8 }
+        "thinking": "off"
       },
       "low": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "low",
-        "options": {
-          "num_thread": 8
-        }
+        "thinking": "low"
       },
       "medium": {
-        "model": "ollama/granite-30b-pi:latest",
-        "thinking": "low",
-        "options": {
-          "num_thread": 8
-        }
+        "model": "ollama/inkling-pi:latest",
+        "thinking": "low"
       },
       "high": {
-        "model": "ollama/granite-30b-pi:latest",
-        "contextWindow": 131072,
-        "thinking": "high",
-        "options": { "num_thread": 8 }
+        "model": "ollama/inkling-pi:latest",
+        "thinking": "high"
       }
     },
     "local": {
@@ -149,28 +127,20 @@
         "docs": "micro"
       },
       "micro": {
-        "model": "ollama/granite-8b-pi:lates",
-        "thinking": "off",
-        "options": { "num_thread": 8 }
+        "model": "ollama/granite-8b-pi:latest",
+        "thinking": "off"
       },
       "low": {
         "model": "ollama/granite-8b-pi:latest",
-        "thinking": "low",
-        "options": {
-          "num_thread": 8
-        }
+        "thinking": "low"
       },
       "medium": {
         "model": "ollama/north-mini-pi:latest",
-        "thinking": "medium",
-        "options": {
-          "num_thread": 8
-        }
+        "thinking": "medium"
       },
       "high": {
-        "model": "ollama/north-mini-pi:latest",
-        "thinking": "high",
-        "options": { "num_thread": 8 }
+        "model": "ollama/inkling-pi:latest",
+        "thinking": "high"
       }
     }
   },
@@ -241,6 +211,12 @@
   ],
   "fallbacks": {
     "inference_coop/regolo/apertus-70b": [
+      "ollama/inkling-pi:latest",
+      "ollama/ornith-pi:latest",
+      "ollama/granite-30b-pi:latest",
+      "ollama/north-mini-pi:latest"
+    ],
+    "ollama/inkling-pi:latest": [
       "ollama/ornith-pi:latest",
       "ollama/granite-30b-pi:latest",
       "ollama/north-mini-pi:latest"

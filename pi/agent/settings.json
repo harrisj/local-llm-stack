@@ -2,7 +2,7 @@
   "defaultModel": "fast-code",
   "defaultProvider": "router",
   "thinking_effort": "low",
-  "lastChangelogVersion": "1.5.2",
+  "lastChangelogVersion": "1.6.0",
   "httpIdleTimeoutMs": 0,
   "packages": [
     "npm:pi-plan",
@@ -11,7 +11,6 @@
     "npm:pi-tool-missing-guard",
     "npm:@nicknisi/pi-ast-grep",
     "npm:@henryqw/pi-ask-question",
-    "npm:pi-ponytail",
     "npm:@jamesjfoong/pi-ollama",
     "npm:pi-mcp-adapter",
     "npm:model-debugger",
@@ -30,8 +29,8 @@
     "npm:@demigodmode/pi-web-agent",
     "npm:pi-list-tools",
     "npm:pi-playwright",
-    "npm:@sfroment/pi-obsidian",
-    "npm:pi-project-memory"
+    "npm:pi-lens",
+    "npm:pi-mermaid"
   ],
   "theme": "dark",
   "compaction": {
@@ -64,15 +63,16 @@
     "ollama/granite-classifier:latest",
     "ollama/pi-classifier:latest",
     "ollama/starcoder2:15b",
-    "ollama/flint:latest",
     "inference_coop/regolo/apertus-70b",
-    "router/local-only",
+    "router/local",
     "inference_coop/greenpt/deepseek-v4.1-flash",
     "ollama/ornith-pi:latest",
     "ollama/north-mini-pi:latest",
     "router/debug-agent",
     "router/fast-code",
-    "router/heavy-context"
+    "router/heavy-context",
+    "ollama/flint-pi:latest",
+    "ollama/inkling-pi:latest"
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"npm:@jamesjfoong/pi-ollama\",\"scope\":\"user\"}": "1.0.3",
@@ -82,12 +82,14 @@
     "{\"source\":\"npm:pi-rtk-optimizer\",\"scope\":\"user\"}": "0.9.0",
     "{\"source\":\"npm:pi-vcc\",\"scope\":\"user\"}": "0.4.1",
     "{\"source\":\"npm:@spences10/pi-sqlite-tools\",\"scope\":\"user\"}": "0.0.15",
-    "{\"source\":\"npm:pi-powerline\",\"scope\":\"user\"}": "0.11.2",
-    "{\"source\":\"npm:@alexeiled/pi-model-router\",\"scope\":\"user\"}": "0.21.0",
-    "{\"source\":\"npm:pi-tidy\",\"scope\":\"user\"}": "0.9.8",
+    "{\"source\":\"npm:pi-powerline\",\"scope\":\"user\"}": "0.11.3",
+    "{\"source\":\"npm:@alexeiled/pi-model-router\",\"scope\":\"user\"}": "0.25.0",
+    "{\"source\":\"npm:pi-tidy\",\"scope\":\"user\"}": "0.11.1",
     "{\"source\":\"npm:pi-context-view\",\"scope\":\"user\"}": "0.8.4",
-    "{\"source\":\"npm:@demigodmode/pi-web-agent\",\"scope\":\"user\"}": "1.17.0",
-    "{\"source\":\"npm:@sfroment/pi-obsidian\",\"scope\":\"user\"}": "1.0.20"
+    "{\"source\":\"npm:@demigodmode/pi-web-agent\",\"scope\":\"user\"}": "1.18.0",
+    "{\"source\":\"npm:@sfroment/pi-obsidian\",\"scope\":\"user\"}": "1.0.20",
+    "{\"source\":\"npm:pi-lens\",\"scope\":\"user\"}": "4.5.1",
+    "{\"source\":\"npm:@nicknisi/pi-ast-grep\",\"scope\":\"user\"}": "0.3.10"
   },
   "tidy": {
     "groupOpen": true,

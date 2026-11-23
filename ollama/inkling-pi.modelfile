@@ -1,0 +1,9 @@
+FROM inkling-2-mini
+
+PARAMETER num_ctx 131072
+
+# Recommended sampling parameters for Inkling 2 Mini
+PARAMETER temperature 1.0
+PARAMETER top_p 1.0
+PARAMETER top_k 0
+PARAMETER min_p 0.0

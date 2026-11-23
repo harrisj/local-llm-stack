@@ -16,5 +16,14 @@
     "enabled": true,
     "baseDir": "~/worktrees",
     "isolate_scratchpad": true
+  },
+  "pi-lens": {
+    "lsp": true,
+    "linters": true,
+    "prettier": true,
+    "tsc": true,
+    "excludePatterns": ["node_modules/**", ".git/**", "dist/**", "build/**"],
+    "lspDelayMs": 1000,
+    "maxConcurrency": 1
   }
 }
