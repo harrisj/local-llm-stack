@@ -25,11 +25,11 @@
     "maxRetries": 1
   },
   "profiles": {
-    "fast-code": {
+    "local": {
       "advisor": { "models": ["inference/metis"] },
       "activityPreset": "auto",
       "activityRouting": {
-        "code": "low",
+        "code": "medium",
         "debug": "medium",
         "explore": "low",
         "plan": "high",
@@ -38,23 +38,23 @@
         "docs": "micro"
       },
       "micro": {
-        "model": "ollama/flint-pi:latest",
+        "model": "ollama/granite-8b-pi:latest",
         "thinking": "off"
       },
       "low": {
-        "model": "ollama/flint-pi:latest",
+        "model": "ollama/granite-8b-pi:latest",
         "thinking": "low"
       },
       "medium": {
-        "model": "ollama/north-mini-pi:latest",
+        "model": "ollama/ornith-pi:latest",
         "thinking": "medium"
       },
       "high": {
-        "model": "ollama/north-mini-pi:latest",
+        "model": "ollama/ornith-pi:latest",
         "thinking": "high"
       }
     },
-    "debug-agent": {
+    "inkling": {
       "advisor": { "models": ["inference/metis"] },
       "activityPreset": "auto",
       "activityRouting": {
@@ -63,16 +63,16 @@
         "explore": "low",
         "plan": "high",
         "review": "high",
-        "ops": "medium",
+        "ops": "low",
         "docs": "micro"
       },
       "micro": {
-        "model": "ollama/north-mini-pi:latest",
+        "model": "ollama/granite-8b-pi:latest",
         "thinking": "off"
       },
       "low": {
-        "model": "ollama/north-mini-pi:latest",
-        "thinking": "medium"
+        "model": "ollama/granite-8b-pi:latest",
+        "thinking": "low"
       },
       "medium": {
         "model": "ollama/inkling-pi:latest",
@@ -91,7 +91,7 @@
         "debug": "medium",
         "explore": "low",
         "plan": "high",
-        "review": "medium",
+        "review": "high",
         "ops": "low",
         "docs": "micro"
       },
@@ -100,7 +100,7 @@
         "thinking": "off"
       },
       "low": {
-        "model": "ollama/north-mini-pi:latest",
+        "model": "ollama/granite-8b-pi:latest",
         "thinking": "medium"
       },
       "medium": {
@@ -111,105 +111,75 @@
         "model": "inference_coop/regolo/apertus-70b",
         "contextWindow": 262288,
         "thinking": "high",
-        "options": { "think": true, "num_ctx": 262288 }
-      }
-    },
-    "local": {
-      "advisor": { "models": ["inference/metis"] },
-      "activityPreset": "auto",
-      "activityRouting": {
-        "code": "medium",
-        "debug": "medium",
-        "explore": "low",
-        "plan": "high",
-        "review": "medium",
-        "ops": "low",
-        "docs": "micro"
-      },
-      "micro": {
-        "model": "ollama/granite-8b-pi:latest",
-        "thinking": "off"
-      },
-      "low": {
-        "model": "ollama/north-mini-pi:latest",
-        "thinking": "low"
-      },
-      "medium": {
-        "model": "ollama/ornith-pi:latest",
-        "thinking": "medium"
-      },
-      "high": {
-        "model": "ollama/inkling-pi:latest",
-        "thinking": "high"
+        "options": { "think": true }
       }
     }
   },
   "heuristics": [
     {
       "matches": [
-        "(!high|/high|--high|force-high|force-critical)",
-        "architecture-plan"
+        "(?:^|\\s)(!high|/high|--high|force-high|force-critical)(?=\\s|$)",
+        "\\barchitecture-plan\\b"
       ],
       "tier": "high",
       "reason": "Explicit manual overrides to force heavy reasoning tier."
     },
     {
-      "matches": [
-        "(!medium|/medium|--medium|force-medium)",
-        "architect",
-        "refactor",
-        "transaction"
-      ],
+      "matches": ["(?:^|\\s)(!medium|/medium|--medium|force-medium)(?=\\s|$)"],
       "tier": "medium",
-      "reason": "Mid-tier reasoning and refactoring workflows routed to ornith-pi."
+      "reason": "Manual override flag forcing mid-tier reasoning."
     },
     {
-      "matches": ["(!low|/low|--low|force-low)"],
+      "matches": ["(?:^|\\s)(!low|/low|--low|force-low)(?=\\s|$)"],
       "tier": "low",
       "reason": "Manual override flag forcing standard implementation tier."
     },
     {
-      "matches": ["(!micro|/micro|--micro|force-micro)"],
+      "matches": ["(?:^|\\s)(!micro|/micro|--micro|force-micro)(?=\\s|$)"],
       "tier": "micro",
       "reason": "Manual override flag forcing lightweight environment tier."
     },
     {
       "matches": [
-        "race condition",
-        "deadlock",
-        "memory leak",
-        "mutex",
-        "semaphore",
-        "crash dump",
-        "propose_goal_draft",
-        "update_goal",
-        "apply_goal_tweak",
-        "audit_goal",
-        "goal_audit",
-        "goal auditing",
-        "audit goal",
-        "rearchitect",
-        "completely revise"
+        "\\brace conditions?\\b",
+        "\\bdeadlocks?\\b",
+        "\\bmemory leaks?\\b",
+        "\\bmutex(es)?\\b",
+        "\\bsemaphores?\\b",
+        "\\bcrash dumps?\\b",
+        "\\bpropose_goal_draft\\b",
+        "\\bupdate_goal\\b",
+        "\\bapply_goal_tweak\\b",
+        "\\b(audit_goal|goal_audit|goal auditing|audit goal)\\b",
+        "\\brearchitect\\b",
+        "\\bcompletely revise\\b"
       ],
       "tier": "high",
-      "reason": "High-priority catastrophic runtime bugs evaluated BEFORE simple verbs."
+      "reason": "High-priority concurrency bugs, rearchitectures, and goal mutations evaluated before general verbs."
     },
     {
       "matches": [
-        "profile",
-        "benchmark",
-        "slowdown",
-        "stuck",
-        "hang",
-        "freeze",
-        "optimize",
-        "performance",
-        "get_goal",
-        "pause_goal",
-        "abort_goal"
+        "\\barchitect(ure|ing)?\\b",
+        "\\brefactor(ing|ed)?\\b",
+        "\\b(db|database|atomic) transactions?\\b"
+      ],
+      "tier": "medium",
+      "reason": "Mid-tier structural refactoring and transactional logic."
+    },
+    {
+      "matches": [
+        "\\bprofil(e|ing)\\b",
+        "\\bbenchmarks?\\b",
+        "\\bslowdowns?\\b",
+        "\\bstuck\\b",
+        "\\bhanging\\b",
+        "\\bfreez(e|ing)\\b",
+        "\\boptimiz(e|ation)\\b",
+        "\\bperformance\\b",
+        "\\b(get_goal|pause_goal|abort_goal)\\b"
       ],
       "tier": "low",
-      "reason": "Standard performance profiling metrics."
+      "reason": "Standard performance profiling metrics and read-only goal checks."
     }
   ],
   "fallbacks": {

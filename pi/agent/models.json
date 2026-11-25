@@ -8,7 +8,7 @@
         {
           "id": "greenpt/deepseek-v4.1-flash",
           "capabilities": ["text", "vision"],
-          "context_window": 1000000,
+          "contextWindow": 1000000,
           "cost": {
             "input": 0.22,
             "output": 1.1,
@@ -40,8 +40,8 @@
       "maxConcurrency": 2,
       "models": [
         { "id": "granite-8b-pi:latest", "contextWindow": 65536 },
-        { "id": "granite-30b-pi:latest" },
-        { "id": "north-mini-pi", "contextWindow": 131072 },
+        { "id": "granite-30b-pi:latest", "contextWindow": 131072 },
+        { "id": "north-mini-pi:latest", "contextWindow": 131072 },
         { "id": "flint-pi:latest", "contextWindow": 65536 },
         { "id": "ornith-pi:latest", "contextWindow": 131072 },
         { "id": "inkling-pi:latest", "contextWindow": 65536 }

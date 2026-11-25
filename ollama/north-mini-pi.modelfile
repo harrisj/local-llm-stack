@@ -1,5 +1,9 @@
 FROM north-mini-code-1.0
 
-# Set parameters for agent loops and context
-PARAMETER temperature 0.0
+# Prevent premature cutoff after thinking blocks
 PARAMETER num_ctx 131072
+PARAMETER num_predict 8192
+
+# Slight temperature prevents immediate EOS after </think>
+PARAMETER temperature 0.2
+PARAMETER top_p 0.95

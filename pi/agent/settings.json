@@ -1,5 +1,5 @@
 {
-  "defaultModel": "fast-code",
+  "defaultModel": "local",
   "defaultProvider": "router",
   "thinking_effort": "low",
   "lastChangelogVersion": "1.6.0",
@@ -64,11 +64,10 @@
     "ollama/starcoder2:15b",
     "inference_coop/regolo/apertus-70b",
     "router/local",
+    "router/inkling",
     "inference_coop/greenpt/deepseek-v4.1-flash",
     "ollama/ornith-pi:latest",
     "ollama/north-mini-pi:latest",
-    "router/debug-agent",
-    "router/fast-code",
     "router/heavy-context",
     "ollama/flint-pi:latest",
     "ollama/inkling-pi:latest"
@@ -87,7 +86,7 @@
     "{\"source\":\"npm:pi-context-view\",\"scope\":\"user\"}": "0.8.4",
     "{\"source\":\"npm:@demigodmode/pi-web-agent\",\"scope\":\"user\"}": "1.18.0",
     "{\"source\":\"npm:@sfroment/pi-obsidian\",\"scope\":\"user\"}": "1.0.20",
-    "{\"source\":\"npm:pi-lens\",\"scope\":\"user\"}": "4.5.1",
+    "{\"source\":\"npm:pi-lens\",\"scope\":\"user\"}": "4.5.2",
     "{\"source\":\"npm:@nicknisi/pi-ast-grep\",\"scope\":\"user\"}": "0.3.10"
   },
   "tidy": {
