@@ -110,7 +110,6 @@ def main() -> int:
             )
             continue
 
-        response = run_query(actual_model)
         results.append(
             {
                 "name": model_name,
@@ -178,9 +177,8 @@ def write_report(results: list[dict]) -> None:
 
         lines.append("### Response")
         lines.append("")
-        lines.append("```")
-        lines.append(r["response"])
-        lines.append("```")
+        for response_line in r["response"].splitlines():
+            lines.append(f"> {response_line}")
         lines.append("")
 
     lines.append("---")
